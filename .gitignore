@@ -1,0 +1,11 @@
+*~
+*.pcm
+*.so
+*.d
+OutTree.h
+OutTree.cc
+*.root
+slimmer/files/Spring*
+out.*
+*.log
+*.pyc

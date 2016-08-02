@@ -1,0 +1,3 @@
+http://dabercro.web.cern.ch/dabercro/slimmerfiles/160722/puWeight_13fb_2016.root
+https://raw.githubusercontent.com/cms-jet/JRDatabase/master/textFiles/Spring16_25nsV6_MC/Spring16_25nsV6_MC_PtResolution_AK8PFchs.txt
+https://raw.githubusercontent.com/cms-jet/JRDatabase/master/textFiles/Spring16_25nsV6_MC/Spring16_25nsV6_MC_SF_AK8PFchs.txt
