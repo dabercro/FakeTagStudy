@@ -12,10 +12,10 @@ fi
 crombie skim --cut '(n_loosepho == 0 || n_looselep == 0) && n_bjetsLoose == 0 && recoil > 200' --tree 'events' --copy 'htotal' --run 'runNum' --lumi 'lumiNum' --freq 100000 --numproc $CrombieNLocalProcs --indir $CrombieFullDir --outdir $CrombieSkimDir --json $CrombieGoodRuns
 
 mkdir $CrombieSkimDir/A
-mv $CrombieSkimDir/GJets_HT-*.root $CrombieSkimDir/A/.
+mv $CrombieSkimDir/*GJets_HT-*.root $CrombieSkimDir/A/.
 
 mkdir $CrombieSkimDir/Z
-mv $CrombieSkimDir/DYJetsToLL_M-50_HT-*.root $CrombieSkimDir/Z/.
+mv $CrombieSkimDir/*DYJetsToLL_M-50_HT-*.root $CrombieSkimDir/Z/.
 
 ./applyCorrections.py $CrombieSkimDir
 
