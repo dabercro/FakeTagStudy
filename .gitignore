@@ -9,3 +9,9 @@ slimmer/files/Spring*
 out.*
 *.log
 *.pyc
+*.aux
+*.nav
+*.out
+*.pdf
+*.snm
+*.toc

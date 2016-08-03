@@ -1,0 +1,121 @@
+\documentclass{beamer}
+
+\author[D. Abercrombie]{
+  Daniel Abercrombie
+}
+
+\title{\bf \sffamily First Pass at Tagging Fake Rate Scale Factor}
+\date{\today}
+
+\usecolortheme{dove}
+
+\usepackage[absolute,overlay]{textpos}
+\usefonttheme{serif}
+\usepackage{appendixnumberbeamer}
+\usepackage{isotope}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\setbeamerfont{frametitle}{size=\Large,series=\bf\sffamily}
+\setbeamertemplate{frametitle}[default][center]
+\usepackage{siunitx}
+\usepackage{tabularx}
+\usepackage{makecell}
+
+\setbeamertemplate{navigation symbols}{}
+\usepackage{graphicx}
+\usepackage{color}
+\setbeamertemplate{footline}[text line]{\parbox{1.083\linewidth}{\footnotesize \hfill \insertshortauthor \hfill \insertpagenumber /\inserttotalframenumber}}
+\setbeamertemplate{headline}[text line]{\parbox{1.083\linewidth}{\footnotesize \hspace{-0.083\linewidth} \textcolor{blue}{\sffamily \insertsection \hfill \insertsubsection}}}
+
+\usepackage{changepage}
+
+\newcommand{\beginbackup}{
+  \newcounter{framenumbervorappendix}
+  \setcounter{framenumbervorappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+  \addtocounter{framenumbervorappendix}{-\value{framenumber}}
+  \addtocounter{framenumber}{\value{framenumbervorappendix}} 
+}
+
+\graphicspath{{figs/}}
+
+\begin{document}
+
+\begin{frame}[nonumbering]
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introduction}
+  Now that I have a setup that JMAR is happy with for W-scale factors,
+  I started the scale factor for fake rates.
+
+  \vspace{12pt}
+
+  First, I made a di-lepton selection (which is mostly muons),
+  but that was a bad idea because of lots of di-boson.
+  Then, I made a $\gamma$ + jets selection.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Datasets}
+
+  Stolen from EOS /store/group/phys\_exotica/monojet/zdemirag \\ /setup80x/Nero/zey\_base:
+
+  \vspace{12pt}
+
+  {\scriptsize
+    \begin{itemize}
+    \item GJets\_HT-*\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8 $[\dagger]$
+    \item QCD\_HT*\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8
+    \item DYJetsToLL\_M-50\_HT-*\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8 $[\dagger]$
+    \item (WW,WZ,ZZ)\_TuneCUETP8M1\_13TeV-pythia8
+    \item TT\_TuneCUETP8M1\_13TeV-powheg-pythia8
+    \item WJetsToLNu\_Pt-*\_TuneCUETP8M1\_13TeV-amcatnloFXFX-pythia8
+    \item ST\_*\_13TeV-powhegV2-madspin-pythia8\_TuneCUETP8M1
+    \end{itemize}
+  }
+  $[\dagger]$ Used the EWK and k-factors from February. \\
+  \textcolor{red}{Are they updated?}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Selection}
+  Both
+  \begin{itemize}
+  \item Veto loose b-jets (csv $> 0.605$)
+  \item Recoil $> \SI{250}{GeV}$
+  \item Fat jet $p_T > \SI{250}{GeV}$
+  \item Veto $\tau$
+  \end{itemize}
+  $\mu\mu$
+  \begin{itemize}
+  \item Two medium $\mu$, with one also tight
+  \item Veto $\gamma$ or additional leptons
+  \item $\mu\mu$ mass between 61 and \SI{121}{GeV}
+  \end{itemize}
+  $\gamma + jets$
+  \begin{itemize}
+  \item One medium photon ($p_T > \SI{175}{GeV}$)
+  \item Veto leptons or additional $\gamma$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  
+\end{frame}
+
+\beginbackup
+
+\begin{frame}
+  \frametitle{Backup Slides}
+\end{frame}
+
+\input{backup_slides.tex}
+
+\backupend
+
+\end{document}
