@@ -36,4 +36,6 @@ def main(cat):
 
 if __name__ == "__main__":
     main('dilep')
+    main('diele')
+    main('dimu')
     main('photon')

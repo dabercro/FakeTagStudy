@@ -1,36 +1,43 @@
 # Two dictionaries to define the cuts for separate categories and control regions
 
+dilep = ' && '.join([
+        'dilepMass < 121',
+        'dilepMass > 61',
+        '(lep1PdgId + lep2PdgId) == 0',
+        'n_bjetsLoose == 0',
+        'n_loosepho == 0',
+        'n_tau == 0',
+        'n_looselep == 2',
+        'n_tightlep > 0',
+        'n_mediumlep == 2',
+        ])
+
 categoryCuts = {
-    'dilep' : ' && '.join([
-            'dilepMass < 121',
-            'dilepMass > 61',
-            '(lep1PdgId + lep2PdgId) == 0',
-            'n_bjetsLoose == 0',
-            'n_loosepho == 0',
-            'n_tau == 0',
-            'recoil > 200',
-            'n_looselep == 2',
-            'n_tightlep > 0',
-            'n_mediumlep == 2',
-            ]),
+    'dilep' : dilep,
+    'diele' : dilep + ' && lep1PdgId * lep2PdgId == -121',
+    'dimu' : dilep + ' && lep1PdgId * lep2PdgId == -169',
     'photon' : ' && '.join([
             'n_mediumpho == 1',
             'n_loosepho == 1',
             'n_tau == 0',
             'n_looselep == 0',
             'n_bjetsLoose == 0',
-            'recoil > 200',
             ])
     }
 
 regionCuts = {
-    'nocut' : 'fatjet1Pt > 0',
+    'nocut' : ' && '.join([
+            'fatjet1Pt > 250',
+            'recoil > 250',
+            ]),
     'full' : ' && '.join([
             'fatjet1tau21 < 0.6',
             'fatjet1PrunedML2L3 > 65',
             'fatjet1PrunedML2L3 < 105',
             ])
     }
+
+regionCuts['full'] += ' && ' + regionCuts['nocut']
 
 # These are just for the users to loop over
 
