@@ -5,7 +5,8 @@ export CrombieQueue=2nw4cores
 export CrombieNLocalProcs=6
 
 export CrombieFileBase=fakescale
-export CrombieEosDir=80X.txt
+export CrombieEosDir=/store/group/phys_exotica/monojet/zdemirag/setup80x/Nero/zey_base
+export CrombieRegDir=/afs/cern.ch/work/d/dabercro/eoscms/cms$CrombieEosDir
 export CrombieTempDir=/afs/cern.ch/work/d/dabercro/public/Fall16/TempOut
 export CrombieFullDir=/afs/cern.ch/work/d/dabercro/public/Fall16/FullOut_$CROMBIEDATE
 export CrombieSkimDir=/afs/cern.ch/work/d/dabercro/public/Fall16/SkimOut_$CROMBIEDATE

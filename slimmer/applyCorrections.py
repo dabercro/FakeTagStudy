@@ -2,7 +2,7 @@
 
 from CrombieTools.SkimmingTools import Corrector
 from CrombieTools.Parallelization import RunOnDirectory
-import os,sys
+import os, sys
 
 directory = sys.argv[1]
 

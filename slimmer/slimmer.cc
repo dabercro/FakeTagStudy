@@ -451,10 +451,13 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
 
           for (Int_t iGen = 0; iGen < inTree->genP4->GetEntries(); iGen++) {
             Int_t checkPdgId = abs((*(inTree->genPdgId))[iGen]);
-            if (checkPdgId != 23 && checkPdgId != 24)
+            if (checkPdgId < 22 || checkPdgId > 24)
               continue;
 
             TLorentzVector *tempGen = (TLorentzVector*) inTree->genP4->At(iGen);
+
+            if (tempGen->Pt() < 100)
+              continue;
 
             if (outTree->genBosPt < tempGen->Pt()) {
               outTree->genBosPt = tempGen->Pt();

@@ -14,7 +14,9 @@ ROOT.gROOT.LoadMacro('slimmer.cc+')
 
 # Load any other needed macros here
 
-if len(sys.argv) < 3:
+if len(sys.argv) < 2:
+    exit()
+elif sys.argv[1] == 'test' or len(sys.argv) < 3:
     ROOT.slimmer(
         'root://eoscms.cern.ch//store/group/phys_exotica/monojet/zdemirag/setup80x/Nero/zey_base/MET/MET-Run2016D-v2/160719_162213/0000/NeroNtuples_81.root',
         'test.root'

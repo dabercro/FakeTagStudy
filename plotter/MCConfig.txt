@@ -1,3 +1,8 @@
+#GJets_40To100      fakescale_GJets_HT-40To100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8.root                                           23080.0        #gamma_+_jets           800
+GJets_100To200     fakescale_GJets_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8.root                                           9235.0              .                  .
+GJets_200To400     fakescale_GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8.root                                           2298.0              .                  .
+GJets_400To600     fakescale_GJets_HT-400To600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8.root                                            277.6              .                  .
+GJets_600ToInf     fakescale_GJets_HT-600ToInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8.root                                             93.47             .                  .
 Zll_ht100          fakescale_DYJetsToLL_M-50_HT-100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8.root                                  148.0          Drell_Yan             840
 Zll_ht200          fakescale_DYJetsToLL_M-50_HT-200to400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8.root                                   40.94             .                  .
 Zll_ht400          fakescale_DYJetsToLL_M-50_HT-400to600_TuneCUETP8M1_13TeV-madgraphMLM-pythia8.root                                    5.497            .                  .
@@ -22,4 +27,3 @@ others             fakescale_ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_T
 WW                 fakescale_WW_TuneCUETP8M1_13TeV-pythia8.root                                                           118.7           Di-boson             880
 ZZ                 fakescale_ZZ_TuneCUETP8M1_13TeV-pythia8.root                                                            16.6              .                  .
 WZ                 fakescale_WZ_TuneCUETP8M1_13TeV-pythia8.root                                                            47.2              .                  .
-
