@@ -9,6 +9,7 @@
 
 \usecolortheme{dove}
 
+\usepackage{xcolor}
 \usepackage[absolute,overlay]{textpos}
 \usefonttheme{serif}
 \usepackage{appendixnumberbeamer}
@@ -105,7 +106,168 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{$\mu\mu$ Distributions}
+  The V-tagging variables before selections
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{160803/dimu_nocut_fatjet1PrunedML2L3.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{160803/dimu_nocut_fatjet1tau21.pdf}
+    \end{column}
+  \end{columns}
+  My $\mu\mu$ selection seems to be underestimating the yeild.
+\end{frame}
+
+\begin{frame}
+  \frametitle{$\mu\mu$ Distributions After Tagging}
+  The V-tagging variables after selections
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{160803/dimu_full_fatjet1PrunedML2L3.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{160803/dimu_full_fatjet1tau21.pdf}
+    \end{column}
+  \end{columns}
+  Yeild is still underestimated.
+  Note the di-boson is actually mostly real Ws.
+\end{frame}
+
+\begin{frame}
+  \frametitle{$\mu\mu$ Scale Factors}
+
+  {\tiny
+  \begin{tabular}{c|c|c|c|c}
+    \hline
+    & No Cut & $m_\text{pruned}$ & $\tau_2/\tau_1$ & V-tag cut \\
+    \hline
+    \makecell{Background \\ Subtracted \\ Data} & 556.23 $\pm$ 24.24 & 80.88 $\pm$ 9.59 & 135.25 $\pm$ 12.40 & 58.85 $\pm$ 8.30 \\
+    \makecell{Signal-\\ matched MC} & 459.62 $\pm$ 7.72 & 59.58 $\pm$ 2.85 & 125.22 $\pm$ 4.11 & 42.19 $\pm$ 2.39 \\
+    \hline
+    \makecell{Normalized \\ Ratio} & 1.00 & 1.12 $\pm$ 0.14 & 0.89 $\pm$ 0.09 & \fcolorbox{red}{yellow}{1.15 $\pm$ 0.18} \\
+    \hline
+  \end{tabular}
+  }
+
+  \vspace{12pt}
+  Systematics: Smearing \\
+  \vspace{12pt}
+
+  {\tiny
+  \begin{tabular}{c|c|c|c|c}
+    \hline
+    & No Cut & $m_\text{pruned}$ & $\tau_2/\tau_1$ & V-tag cut \\
+    \hline
+    \makecell{Background \\ Subtracted \\ Data} & 698.13 $\pm$ 27.23 & 81.16 $\pm$ 9.58 & 135.38 $\pm$ 12.39 & 59.21 $\pm$ 8.29 \\
+    \makecell{Signal-\\ matched MC} & 588.54 $\pm$ 8.72 & 58.17 $\pm$ 2.79 & 125.16 $\pm$ 4.10 & 39.39 $\pm$ 2.30 \\
+    \hline
+    \makecell{Normalized \\ Ratio} & 1.00 & 1.18 $\pm$ 0.15 & 0.91 $\pm$ 0.09 & \fcolorbox{red}{yellow}{1.27 $\pm$ 0.19} \\
+    \hline
+  \end{tabular}
+  }
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$\gamma$ + jets Distributions}
+  The V-tagging variables before selections
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{160803/photon_nocut_fatjet1PrunedML2L3.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{160803/photon_nocut_fatjet1tau21.pdf}
+    \end{column}
+  \end{columns}
+  My $\gamma$ + jets selection seems to have a good yeild agreement.
+\end{frame}
+
+\begin{frame}
+  \frametitle{$\gamma$ + jets Distributions After Tagging}
+  The V-tagging variables after selections
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{160803/photon_full_fatjet1PrunedML2L3.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{160803/photon_full_fatjet1tau21.pdf}
+    \end{column}
+  \end{columns}
+  Yeild is underestimated slightly, so scale factor less than one expected.
+\end{frame}
+
+\begin{frame}
+  \frametitle{$\gamma$ + jets Scale Factors}
+
+  \begin{adjustwidth}{-1.5em}{-1.5em}
+    {\tiny
+      \begin{tabular}{c|c|c|c|c}
+        \hline
+        & No Cut & $m_\text{pruned}$ & $\tau_2/\tau_1$ & V-tag cut \\
+        \hline
+        \makecell{Background \\ Subtracted \\ Data} & 146287.17 $\pm$ 382.64 & 17182.05 $\pm$ 131.33 & 33097.96 $\pm$ 182.17 & 12490.15 $\pm$ 112.04 \\
+        \makecell{Signal-\\ matched MC} & 152036.24 $\pm$ 735.88 & 20334.27 $\pm$ 278.48 & 37959.01 $\pm$ 367.05 & 14086.83 $\pm$ 234.96 \\
+        \hline
+        \makecell{Normalized \\ Ratio} & 1.00 & 0.88 $\pm$ 0.01 & 0.91 $\pm$ 0.01 & \fcolorbox{red}{yellow}{0.92 $\pm$ 0.02} \\
+        \hline
+      \end{tabular}
+    }
+  \end{adjustwidth}
   
+  \vspace{12pt}
+  Systematics: Smearing \\
+  
+  \begin{adjustwidth}{-1.5em}{-1.5em}
+    {\tiny
+      \begin{tabular}{c|c|c|c|c}
+        \hline
+        & No Cut & $m_\text{pruned}$ & $\tau_2/\tau_1$ & V-tag cut \\
+        \hline
+        \makecell{Background \\ Subtracted \\ Data} & 199705.63 $\pm$ 447.07 & 17181.30 $\pm$ 131.33 & 33098.05 $\pm$ 182.17 & 12489.83 $\pm$ 112.04 \\
+        \makecell{Signal-\\ matched MC} & 207698.06 $\pm$ 989.25 & 20772.21 $\pm$ 281.12 & 38428.29 $\pm$ 368.78 & 13770.92 $\pm$ 231.12 \\
+        \hline
+        \makecell{Normalized \\ Ratio} & 1.00 & 0.86 $\pm$ 0.01 & 0.90 $\pm$ 0.01 & \fcolorbox{red}{yellow}{0.94 $\pm$ 0.02} \\
+        \hline
+      \end{tabular}
+    }
+  \end{adjustwidth}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$p_T$ Dependence?}
+  With $\gamma$ + jets, we may be able to measure any $p_T$ dependence on the fake scale factor
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      Before V-tagging \\
+      \includegraphics[width=\linewidth]{160803/photon_nocut_fatjet1Pt.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      After V-tagging \\
+      \includegraphics[width=\linewidth]{160803/photon_full_fatjet1Pt.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Conclusions}
+
+  \begin{itemize}
+  \item $\mu\mu$ might not be as good to use because of di-boson contamination
+  \item $\mu\mu$ also has worse agreement between data and MC
+  \item The two scale factors do not match, which is bad
+  \end{itemize}
+
 \end{frame}
 
 \beginbackup
