@@ -28,3 +28,4 @@ others             fakescale_ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_T
 WW                 fakescale_WW_TuneCUETP8M1_13TeV-pythia8.root                                                           118.7           Di-boson             880
 ZZ                 fakescale_ZZ_TuneCUETP8M1_13TeV-pythia8.root                                                            16.6              .                  .
 WZ                 fakescale_WZ_TuneCUETP8M1_13TeV-pythia8.root                                                            47.2              .                  .
+AW                 fakescale_WGJets_MonoPhoton_PtG-130_TuneCUETP8M1_13TeV-madgraph.root                                     0.6637        #gamma_+_W           885

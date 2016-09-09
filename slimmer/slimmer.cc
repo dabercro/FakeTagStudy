@@ -278,8 +278,8 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
       outTree->recoil = vec3.Pt();
     }
     
-    if (outTree->recoil < 0)
-      continue;
+    // if (outTree->recoil < 0)
+    //   continue;
 
     Double_t checkDPhi = 5.0;
     Double_t clean_checkDPhi = 5.0;
@@ -476,8 +476,8 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
       }
     }
 
-    if (outTree->fatjet1Pt < 0)
-      continue;
+    // if (outTree->fatjet1Pt < 0)
+    //   continue;
 
     outTree->fatjet1DPhiMet = deltaPhi(outTree->fatjet1Phi,outTree->metPhi);
 

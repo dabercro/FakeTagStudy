@@ -1,6 +1,6 @@
-export CrombieFilesPerJob=20
-export CrombieNBatchProcs=4
-export CrombieQueue=2nw4cores
+export CrombieFilesPerJob=5
+export CrombieNBatchProcs=1
+export CrombieQueue=1nh
 
 export CrombieNLocalProcs=6
 
@@ -11,7 +11,8 @@ export CrombieRegDir=/afs/cern.ch/work/d/dabercro/eoscms/cms$CrombieEosDir
 export CrombieTempDir=/afs/cern.ch/work/d/dabercro/public/Fall16/TempOut
 export CrombieFullDir=/afs/cern.ch/work/d/dabercro/public/Fall16/FullOut_$CROMBIEDATE
 export CrombieSkimDir=/afs/cern.ch/work/d/dabercro/public/Fall16/SkimOut_$CROMBIEDATE
-export CrombieDirList=FakeScale.txt
+#export CrombieDirList=FakeScale.txt
+export CrombieDirList=SingleMuon.txt
 
 export CrombieSlimmerScript=runSlimmer.py
 export CrombieJobScriptList=JobScriptList.txt
