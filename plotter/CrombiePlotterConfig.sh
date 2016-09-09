@@ -15,6 +15,4 @@ fi
 
 export CrombieOutLimitTreeDir=limits/$CROMBIEDATE
 
-export CrombieNLocalProcs=1
-
 export CrombieCutsFile=cuts.py
