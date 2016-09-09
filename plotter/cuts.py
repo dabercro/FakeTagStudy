@@ -22,13 +22,28 @@ categoryCuts = {
             'n_tau == 0',
             'n_looselep == 0',
             'n_bjetsLoose == 0',
-            ])
+            ]),
+    'Zmm' : (
+        'abs(fatjet1PrunedM - 86 ) < 20 && fatjet1tau21 < 0.6 &&'
+        'leadingJet_outaccp==0&&n_looselep == 2 && dilep_m > 61 && dilep_m < 121 &&'
+        '(lep1PdgId*lep2PdgId == -169)&&abs(fatjet1Eta)<2.5&&n_tau==0&&n_bjetsMedium==0'
+        '&&n_loosepho==0&&fatjet1Pt>250. && jet1isMonoJetIdNew==1 && '
+        'n_tightlep > 0&&abs(minJetMetDPhi_clean)>0.5&&met>200.0'
+        ),
+    'gjets' : (
+        'abs(fatjet1PrunedM - 86 ) < 20 && fatjet1tau21 < 0.6 &&'
+        'leadingJet_outaccp==0&&n_looselep==0&&abs(fatjet1Eta)<2.5&&'
+        'n_tau==0&&n_bjetsMedium==0&&fatjet1Pt>250. && jet1isMonoJetIdNew==1 && '
+        'photonPt > 175 && abs(photonEta) < 1.4442 && '
+        'n_mediumpho == 1 && n_loosepho == 1&&((triggerFired[11]==1 || triggerFired[12]==1 || triggerFired[13]==1))&&'
+        'abs(minJetMetDPhi_clean)>0.5&&met>200.0'
+        ),
     }
 
 regionCuts = {
     'nocut' : ' && '.join([
             'fatjet1Pt > 250',
-            'recoil > 250',
+            'met > 250',
             ]),
     'full' : ' && '.join([
             'fatjet1tau21 < 0.6',

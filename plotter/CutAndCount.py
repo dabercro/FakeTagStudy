@@ -9,11 +9,9 @@ SetupFromEnv()
 
 histAnalysis.SetPrintingMethod(histAnalysis.kPresentation)
 
-histAnalysis.ResetConfig()
-histAnalysis.ReadMCConfig('MCSignal.txt')
-histAnalysis.AddDataFile('fakescale_Data.root')
+histAnalysis.AddDataFile('monojet_MET.root')
 histAnalysis.SetSignalName('Signal')
-histAnalysis.SetMCWeight('(' + cuts.defaultMCWeight + ' * xsec_v1 * ' + os.environ.get('CrombieLuminosity') + ')')
+histAnalysis.SetMCWeight(cuts.defaultMCWeight)
 
 def theCuts(cat):
     return [
@@ -57,7 +55,7 @@ def main(cat):
 
 
 if __name__ == "__main__":
-    for cat in ['dilep', 'diele', 'dimu', 'photon']:
+    for cat in ['Zmm', 'gjets']:
         main(cat)
-        for smear in ['Up', 'Down', 'Central']:
-            getSmear(cat, smear)
+#        for smear in ['Up', 'Down', 'Central']:
+#            getSmear(cat, smear)
