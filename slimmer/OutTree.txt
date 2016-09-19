@@ -55,6 +55,7 @@ fatjet1PrunedMuncorr/F=-5
 fatjet1SoftDropM/F=-5
 fatjet1tau21/F=1
 fatjet1tau32/F=1
+fatjet1QJetVol/F=1
 fatjet1DRGenW/F=5
 fatjet1MaxBTag/F=-1
 fatjet1DPhiMet/F=5

@@ -31,6 +31,7 @@ def SetupArgs():
 
 if __name__ == '__main__':
     plotter.AddDataFile('monojet_MET.root')
+    plotter.AddDataFile('monojet_SinglePhoton.root')
     MakePlots(
         # Categories
         ['Zmm',

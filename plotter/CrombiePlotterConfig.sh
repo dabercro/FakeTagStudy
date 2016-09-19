@@ -4,7 +4,7 @@ export CrombieMCConfig=MCMonoJet.txt
 #export CrombieSignalConfig=SignalConfig.txt
 #export CrombieExcept_example=MCAdjust.txt
 export CrombieLuminosity=12900.0
-export CrombieInFilesDir=../../MonoJetCopy_160909
+export CrombieInFilesDir=../../SkimmedMonoJet_160912
 
 if [ "$(hostname)" = "dabercro-MacBookAir" ]
 then

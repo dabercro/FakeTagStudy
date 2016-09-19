@@ -1,18 +1,17 @@
-export CrombieFilesPerJob=5
+export CrombieFilesPerJob=20
 export CrombieNBatchProcs=1
 export CrombieQueue=1nh
 
 export CrombieNLocalProcs=6
 
 export CrombieFileBase=fakescale
-#export CrombieEosDir=/store/group/phys_exotica/monojet/zdemirag/setup80x/Nero/zey_base
+#export CrombieEosDir=/store/user/dabercro/Nero/80X
 export CrombieEosDir=80X.txt
 export CrombieRegDir=/afs/cern.ch/work/d/dabercro/eoscms/cms$CrombieEosDir
 export CrombieTempDir=/afs/cern.ch/work/d/dabercro/public/Fall16/TempOut
-export CrombieFullDir=/afs/cern.ch/work/d/dabercro/public/Fall16/FullOut_$CROMBIEDATE
-export CrombieSkimDir=/afs/cern.ch/work/d/dabercro/public/Fall16/SkimOut_$CROMBIEDATE
+export CrombieFullDir=../../Full_$CROMBIEDATE
+export CrombieSkimDir=../../Skim_$CROMBIEDATE
 #export CrombieDirList=FakeScale.txt
-export CrombieDirList=SingleMuon.txt
 
 export CrombieSlimmerScript=runSlimmer.py
 export CrombieJobScriptList=JobScriptList.txt

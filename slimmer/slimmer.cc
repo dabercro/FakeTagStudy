@@ -432,6 +432,7 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
         outTree->fatjet1SoftDropM = (*(inTree->fatjetAK8CHSSoftdropMass))[iFatJet];
         outTree->fatjet1tau21 = (*(inTree->fatjetAK8CHSTau2))[iFatJet]/(*(inTree->fatjetAK8CHSTau1))[iFatJet];
         outTree->fatjet1tau32 = (*(inTree->fatjetAK8CHSTau3))[iFatJet]/(*(inTree->fatjetAK8CHSTau2))[iFatJet];
+        outTree->fatjet1QJetVol = (*(inTree->fatjetAK8CHSQJetVol))[iFatJet];
 
         outTree->fatjet1MaxBTag = GetMaxBTag(iFatJet,inTree);
 
