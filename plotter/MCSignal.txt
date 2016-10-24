@@ -28,3 +28,4 @@ others             fakescale_ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_T
 WW                 fakescale_WW_TuneCUETP8M1_13TeV-pythia8.root                                                           118.7            . .
 ZZ                 fakescale_ZZ_TuneCUETP8M1_13TeV-pythia8.root                                                            16.6              .                  .
 WZ                 fakescale_WZ_TuneCUETP8M1_13TeV-pythia8.root                                                            47.2              .                  .
+AV                 ../Skim_161024/fakescale_VA_privateprod.root                                        0.85           .            .

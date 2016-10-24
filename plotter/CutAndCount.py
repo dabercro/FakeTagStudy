@@ -9,12 +9,16 @@ SetupFromEnv()
 
 histAnalysis.SetPrintingMethod(histAnalysis.kPresentation)
 
+histAnalysis.ResetConfig()
+histAnalysis.ReadMCConfig('MCSignal.txt')
+histAnalysis.AddDataFile('fakescale_Data.root')
 histAnalysis.SetSignalName('Signal')
-histAnalysis.SetMCWeight(cuts.defaultMCWeight)
+histAnalysis.SetSearchBy(histAnalysis.kLegendEntry)
+histAnalysis.SetMCWeight('(' + cuts.defaultMCWeight + ')')
 
 def theCuts(cat):
     return [
-        ('$m_\\text{pruned}$', 'fatjet1PrunedM > 65 && fatjet1PrunedM < 105'),
+        ('$m_\\text{pruned}$', 'fatjet1PrunedML2L3 > 65 && fatjet1PrunedML2L3 < 105'),
         ('$\\tau_2/\\tau_1$', 'fatjet1tau21 < 0.6'),
         ('V-tag cut', cuts.cut(cat,'full'))
         ]
@@ -50,12 +54,12 @@ def main(cat):
     for name, cut in theCuts(cat):
         histAnalysis.AddScaleFactorCut(name, cut)
 
-    histAnalysis.DoScaleFactors('n_tightlep',1,0,4)
+    histAnalysis.DoScaleFactors('n_tightlep',1,0,2)
 
 
 if __name__ == "__main__":
-    histAnalysis.AddDataFile('monojet_MET.root')
-    main('Zmm')
-    histAnalysis.ResetConfig(histAnalysis.kData)
-    histAnalysis.AddDataFile('monojet_SinglePhoton.root')
-    main('gjets')
+#    for cat in ['dilep', 'diele', 'dimu', 'photon']:
+    for cat in ['photon']:
+        main(cat)
+        for smear in ['Up', 'Down', 'Central']:
+            getSmear(cat, smear)

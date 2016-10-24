@@ -16,6 +16,7 @@ plotter.SetOthersColor(922)
 plotter.SetFontSize(0.03)
 plotter.SetAxisTitleOffset(1.2)
 plotter.SetRatioMinMax(0,2)
+plotter.SetMakeRatio(True)
 
 def SetupArgs():
     return [
