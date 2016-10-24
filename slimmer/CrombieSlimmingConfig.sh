@@ -5,13 +5,13 @@ export CrombieQueue=1nh
 export CrombieNLocalProcs=6
 
 export CrombieFileBase=fakescale
-#export CrombieEosDir=/store/user/dabercro/Nero/80X
-export CrombieEosDir=80X.txt
+export CrombieEosDir=/store/user/dabercro
+#export CrombieEosDir=80X.txt
 export CrombieRegDir=/afs/cern.ch/work/d/dabercro/eoscms/cms$CrombieEosDir
-export CrombieTempDir=/afs/cern.ch/work/d/dabercro/public/Fall16/TempOut
+export CrombieTempDir=/afs/cern.ch/work/d/dabercro/public/Fall16/Temp
 export CrombieFullDir=../../Full_$CROMBIEDATE
 export CrombieSkimDir=../../Skim_$CROMBIEDATE
-#export CrombieDirList=FakeScale.txt
+export CrombieDirList=VA.txt
 
 export CrombieSlimmerScript=runSlimmer.py
 export CrombieJobScriptList=JobScriptList.txt

@@ -1,6 +1,3 @@
-from CrombieTools import Nminus1Cut as nm1
-from selection import build_selection as bs
-
 # Two dictionaries to define the cuts for separate categories and control regions
 
 dilep = ' && '.join([
@@ -25,13 +22,13 @@ categoryCuts = {
             'n_tau == 0',
             'n_looselep == 0',
             'n_bjetsLoose == 0',
-            ]),
+            ])
     }
 
 regionCuts = {
     'nocut' : ' && '.join([
             'fatjet1Pt > 250',
-            'met > 250',
+            'recoil > 250',
             ]),
     'full' : ' && '.join([
             'fatjet1tau21 < 0.6',
@@ -60,7 +57,7 @@ defaultMCWeight = 'mcFactors'
 
 additions    = { # key : [Data,MC]
     'signal'  : ['0','1'],
-    'default' : ['1', defaultMCWeight]
+    'default' : ['1',defaultMCWeight]
     }
 
 # Do not change the names of these functions or required parameters
@@ -69,13 +66,7 @@ additions    = { # key : [Data,MC]
 # Generally you can probably leave these alone
 
 def cut(category, region):
-    if category in categoryCuts.keys():
-        catCut = categoryCuts[category]
-    else:
-        catCut = nm1(nm1(bs(category, 250), 'fatjet1PrunedM'), 'fatjet1tau21')
-
-    return '((' + catCut + ') && (' + joinCuts(toJoin=region.split('+')) + '))'
-
+    return '((' + categoryCuts[category] + ') && (' + joinCuts(toJoin=region.split('+')) + '))'
 
 def dataMCCuts(region, isData):
     key = 'default'

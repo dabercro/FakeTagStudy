@@ -1,10 +1,10 @@
 source ../slimmer/CrombieSlimmingConfig.sh
 
-export CrombieMCConfig=MCMonoJet.txt
+export CrombieMCConfig=MCConfig.txt
 #export CrombieSignalConfig=SignalConfig.txt
 #export CrombieExcept_example=MCAdjust.txt
 export CrombieLuminosity=12900.0
-export CrombieInFilesDir=../../SkimmedMonoJet_160912
+export CrombieInFilesDir=../../SkimOut_160803
 
 if [ "$(hostname)" = "dabercro-MacBookAir" ]
 then
