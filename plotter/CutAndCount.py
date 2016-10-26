@@ -22,7 +22,7 @@ def theCuts(cat):
         ('$\\tau_2/\\tau_1$', 'fatjet1tau21 < 0.6'),
         ('V-tag cut', cuts.cut(cat,'full'))
         ]
- 
+
 
 def printBig(printThis):
     chars = len(printThis)

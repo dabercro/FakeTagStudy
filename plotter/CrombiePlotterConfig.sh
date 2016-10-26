@@ -10,7 +10,7 @@ export CrombieInFilesDir=../../SkimOut_160803
 if [ "$(hostname)" = "dabercro-MacBookAir" ]
 then
     export CrombieOutPlotDir=plots/$CROMBIEDATE
-else    
+else
     export CrombieOutPlotDir=/afs/cern.ch/user/d/dabercro/www/plots/$CROMBIEDATE
 fi
 

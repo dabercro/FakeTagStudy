@@ -18,6 +18,8 @@ plotter.SetAxisTitleOffset(1.2)
 plotter.SetRatioMinMax(0,2)
 plotter.SetMakeRatio(True)
 
+#plotter.SetDebugLevel(plotter.eDebug)
+
 def SetupArgs():
     return [
         ['npv',50,0,50,'NPV','Events/1.0'],

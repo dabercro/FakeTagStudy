@@ -35,10 +35,10 @@ enum TauSelection{
 };
 
 enum IsoType {
-  kIsoVeto = 0,  
+  kIsoVeto = 0,
   kIsoLoose,
   kIsoMedium,
-  kIsoTight  
+  kIsoTight
 };
 
 Bool_t PassIso(Float_t lepPt, Float_t lepEta, Float_t lepIso, Int_t lepPdgId, IsoType isoType) {
@@ -52,7 +52,7 @@ Bool_t PassIso(Float_t lepPt, Float_t lepEta, Float_t lepIso, Int_t lepPdgId, Is
     switch (isoType) {
     case kIsoVeto:
       isoCut = (fabs(lepEta) <= 1.479) ? 0.126 : 0.144;
-      break;  
+      break;
     case kIsoLoose:
       isoCut = (fabs(lepEta) <= 1.479) ? 0.0893 : 0.121;
       break;
@@ -116,7 +116,7 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
   std::vector<TLorentzVector*> photonVecs;
 
   Float_t checkDR = 0.0;
-  
+
   for (Int_t iEntry = 0; iEntry < allTree->GetEntriesFast(); iEntry++) {
     mcWeightBranch->GetEntry(iEntry);
     if (mcWeight > 0)
@@ -130,7 +130,7 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
   for (Int_t iEntry = 0; iEntry < nentries; iEntry++) {
 
     outTree->Reset();
-    
+
     //// Clear out the saved vectors for cleaning ////
 
     leptonVecs.resize(0);
@@ -138,9 +138,9 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
 
     if (iEntry % 10000 == 0)
       std::cout << "Processing events: ... " << float(iEntry)/float(nentries)*100 << "%" << std::endl;
-    
+
     inTree->GetEntry(iEntry);
-    
+
     //// Fill some global event values ////
 
     outTree->runNum    = inTree->runNum;
@@ -161,12 +161,12 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
     outTree->metPhi = ((TLorentzVector*)((*(inTree->metP4))[0]))->Phi();
 
     outTree->triggerFired = inTree->triggerFired;
-    
+
     // std::cout << "//// Here is the lepton filling ////" << std::endl;
 
     for (Int_t iLepton = 0; iLepton < inTree->lepP4->GetEntries(); iLepton++) {
       TLorentzVector* tempLepton = (TLorentzVector*) inTree->lepP4->At(iLepton);
-      
+
       //// Rejecting leptons with Eta cuts ////
 
       if ((fabs(tempLepton->Eta()) > 2.5) ||
@@ -181,7 +181,7 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
           ) ||
           (fabs((*(inTree->lepPdgId))[iLepton]) == 11 && ((*(inTree->lepSelBits))[iLepton] & 2) == 2 &&
             PassIso(tempLepton->Pt(),tempLepton->Eta(),(*(inTree->lepIso))[iLepton],(*(inTree->lepPdgId))[iLepton],kIsoVeto)
-          )  
+          )
           )) {
 
         outTree->n_looselep++;
@@ -193,7 +193,7 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
           outTree->lep1IsMedium = 0;
           outTree->lep1IsTight  = 0;
           outTree->lep1RelIso = (*(inTree->lepIso))[iLepton]/outTree->lep1Pt;
-        }          
+        }
         else if (outTree->n_looselep == 2) {
           outTree->lep2Pt    = tempLepton->Pt();
           outTree->lep2Eta   = tempLepton->Eta();
@@ -202,7 +202,7 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
           outTree->lep2IsMedium = 0;
           outTree->lep2IsTight  = 0;
           outTree->lep2RelIso = (*(inTree->lepIso))[iLepton]/outTree->lep2Pt;
-        }          
+        }
 
         if (tempLepton->Pt() > 20. && ((*(inTree->lepSelBits))[iLepton] & 32) == 32 &&
             PassIso(tempLepton->Pt(),tempLepton->Eta(),(*(inTree->lepIso))[iLepton],(*(inTree->lepPdgId))[iLepton],kIsoMedium)) {
@@ -245,13 +245,13 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
     }
 
     // std::cout << "//// Now we go on to look at photons ////" << std::endl;
-    
+
     for (Int_t iPhoton = 0; iPhoton < inTree->photonP4->GetEntries(); iPhoton++) {
       TLorentzVector* tempPhoton = (TLorentzVector*) inTree->photonP4->At(iPhoton);
-      
+
       //// Set photon cuts at some pt and eta ////
 
-      if (tempPhoton->Pt() < 15. || fabs(tempPhoton->Eta()) > 2.5 || 
+      if (tempPhoton->Pt() < 15. || fabs(tempPhoton->Eta()) > 2.5 ||
           ((*(inTree->photonSelBits))[iPhoton] & 8) != 8)
         continue;
 
@@ -277,7 +277,7 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
       vec3 = vec1 + vec2;
       outTree->recoil = vec3.Pt();
     }
-    
+
     // if (outTree->recoil < 0)
     //   continue;
 
@@ -288,33 +288,33 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
       TLorentzVector* tempJet = (TLorentzVector*) inTree->jetP4->At(iJet);
 
       outTree->jet_ht += tempJet->Pt();
-      
+
       //// Ignore jets that are not in this region ////
 
       if (fabs(tempJet->Eta()) > 2.4 || (*(inTree->jetPuId))[iJet] < -0.62 || tempJet->Pt() < 30.0)
         continue;
 
       //// Now do cleaning ////
-      
+
       Bool_t match = false;
-      
+
       for (UInt_t iLepton = 0; iLepton < leptonVecs.size(); iLepton++) {
         if (deltaR(leptonVecs[iLepton]->Phi(),leptonVecs[iLepton]->Eta(),tempJet->Phi(),tempJet->Eta()) < dROverlap) {
           match = true;
           break;
         }
       }
-      
+
       if (match)
         continue;
-      
+
       for (UInt_t iPhoton = 0; iPhoton < photonVecs.size(); iPhoton++) {
         if (deltaR(photonVecs[iPhoton]->Phi(),photonVecs[iPhoton]->Eta(),tempJet->Phi(),tempJet->Eta()) < dROverlap) {
           match = true;
           break;
         }
       }
-      
+
       if (match)
         continue;
 
@@ -335,14 +335,14 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
         if ((*(inTree->jetBdiscr))[iJet] > bCutTight)
           outTree->n_bjetsTight++;
         if ((*(inTree->jetBdiscr))[iJet] > bCutMedium)
-          outTree->n_bjetsMedium++;   
+          outTree->n_bjetsMedium++;
         if ((*(inTree->jetBdiscr))[iJet] > bCutLoose)
           outTree->n_bjetsLoose++;
         else
           continue;
       }
     }
-    
+
     // std::cout << "//// Now check number of non-overlapping taus ////" << std::endl;
 
     for (Int_t iTau = 0; iTau < inTree->tauP4->GetEntries(); iTau++) {
@@ -360,16 +360,16 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
         continue;
 
       //// Now do cleaning ////
-      
+
       Bool_t match = false;
-      
+
       for (UInt_t iLepton = 0; iLepton < leptonVecs.size(); iLepton++) {
         if (deltaR(leptonVecs[iLepton]->Phi(),leptonVecs[iLepton]->Eta(),tempTau->Phi(),tempTau->Eta()) < dROverlap) {
           match = true;
           break;
         }
       }
-      
+
       if (match)
         continue;
 
@@ -384,11 +384,11 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
       if (dR_1 > dROverlap && dR_2 > dROverlap)
         outTree->n_tau++;
     }
-    
+
     // std::cout << "//// Fat Jet Selection ////" << std::endl;
 
     // Count jets that don't overlap with W jets
-    
+
     Float_t overlapjetDR = 0.6;
     Int_t overlapping = 0;
 
@@ -405,7 +405,7 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
           break;
         }
       }
-      
+
       for (UInt_t iPhoton = 0; iPhoton < photonVecs.size(); iPhoton++) {
         if (deltaR(photonVecs[iPhoton]->Phi(),photonVecs[iPhoton]->Eta(),tempFatJet->Phi(),tempFatJet->Eta()) < 2.0 * dROverlap) {
           match = true;
@@ -464,7 +464,7 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
               outTree->genBosPt = tempGen->Pt();
               outTree->genBosPdgId = (*(inTree->genPdgId))[iGen];
             }
-            
+
             checkDR = deltaR(outTree->fatjet1Phi,outTree->fatjet1Eta,tempGen->Phi(),tempGen->Eta());
             if (checkDR < outTree->fatjet1DRGenW) {
               outTree->fatjet1DRGenW   = checkDR;
@@ -496,26 +496,26 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
         }
       }
       if (pt1 > 0.0 && pt2 > 0.0)
-        outTree->topPtReweighting = sqrt(exp(0.156 - 0.00137*min(pt1,float(400.0))) * 
+        outTree->topPtReweighting = sqrt(exp(0.156 - 0.00137*min(pt1,float(400.0))) *
                                          exp(0.156 - 0.00137*min(pt2,float(400.0)))) / 0.88;
     }
 
     outTree->n_jetsNotFat = outTree->n_jetsTot - overlapping;
 
     if (outTree->fatjet1Pt > 0) {
-      outTree->fatjet1PtSmearedCentral = smearer->GetSmeared(inTree->rho, outTree->fatjet1Pt, outTree->fatjet1Eta, outTree->fatjet1Phi, 
+      outTree->fatjet1PtSmearedCentral = smearer->GetSmeared(inTree->rho, outTree->fatjet1Pt, outTree->fatjet1Eta, outTree->fatjet1Phi,
                                                              outTree->fatjet1Pt, kCentral);
-      outTree->fatjet1PtSmearedUp   =    smearer->GetSmeared(inTree->rho, outTree->fatjet1Pt, outTree->fatjet1Eta, outTree->fatjet1Phi, 
+      outTree->fatjet1PtSmearedUp   =    smearer->GetSmeared(inTree->rho, outTree->fatjet1Pt, outTree->fatjet1Eta, outTree->fatjet1Phi,
                                                              outTree->fatjet1Pt, kUp);
-      outTree->fatjet1PtSmearedDown =    smearer->GetSmeared(inTree->rho, outTree->fatjet1Pt, outTree->fatjet1Eta, outTree->fatjet1Phi, 
+      outTree->fatjet1PtSmearedDown =    smearer->GetSmeared(inTree->rho, outTree->fatjet1Pt, outTree->fatjet1Eta, outTree->fatjet1Phi,
                                                              outTree->fatjet1Pt, kDown);
-      outTree->fatjet1PrunedML2L3SmearedCentral = smearer->GetSmeared(inTree->rho, outTree->fatjet1Pt, outTree->fatjet1Eta, outTree->fatjet1Phi, 
+      outTree->fatjet1PrunedML2L3SmearedCentral = smearer->GetSmeared(inTree->rho, outTree->fatjet1Pt, outTree->fatjet1Eta, outTree->fatjet1Phi,
                                                                       outTree->fatjet1PrunedML2L3, kCentral);
-      outTree->fatjet1PrunedML2L3SmearedUp   =    smearer->GetSmeared(inTree->rho, outTree->fatjet1Pt, outTree->fatjet1Eta, outTree->fatjet1Phi, 
+      outTree->fatjet1PrunedML2L3SmearedUp   =    smearer->GetSmeared(inTree->rho, outTree->fatjet1Pt, outTree->fatjet1Eta, outTree->fatjet1Phi,
                                                                       outTree->fatjet1PrunedML2L3, kUp);
-      outTree->fatjet1PrunedML2L3SmearedDown =    smearer->GetSmeared(inTree->rho, outTree->fatjet1Pt, outTree->fatjet1Eta, outTree->fatjet1Phi, 
+      outTree->fatjet1PrunedML2L3SmearedDown =    smearer->GetSmeared(inTree->rho, outTree->fatjet1Pt, outTree->fatjet1Eta, outTree->fatjet1Phi,
                                                                       outTree->fatjet1PrunedML2L3, kDown);
-    }      
+    }
 
     outTree->Fill();
 

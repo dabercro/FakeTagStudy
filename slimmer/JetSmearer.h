@@ -64,7 +64,7 @@ void JetSmearer::ReadSFConfig(TString configName)
 
   while(!Stuff.EndsWith("}"))
     configFile >> Stuff;
-  
+
   while(!configFile.eof()) {
     configFile >> downEta >> upEta >> Stuff >> sf >> downSf >> upSf;
     SFDownEta.push_back(downEta);
@@ -72,7 +72,7 @@ void JetSmearer::ReadSFConfig(TString configName)
     SFs.push_back(sf);
     DownSFs.push_back(downSf);
     UpSFs.push_back(upSf);
-    
+
   }
   configFile.close();
 }
@@ -95,13 +95,13 @@ void JetSmearer::ReadResConfig(TString configName)
 
   while(!Stuff.EndsWith("}"))
     configFile >> Stuff;
-  
+
   while(!configFile.eof()) {
     configFile >> downEta >> upEta >> downRho >> upRho;
     configFile >> Stuff;
     configFile >> Stuff;
     configFile >> Stuff;
-    
+
     configFile >> param0 >> param1 >> param2 >> param3;
 
     ResDownEta.push_back(downEta);
