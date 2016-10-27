@@ -5,7 +5,7 @@ export CrombieMCConfig=MCConfig.txt
 #export CrombieSignalConfig=SignalConfig.txt
 #export CrombieExcept_example=MCAdjust.txt
 export CrombieLuminosity=12900.0
-export CrombieInFilesDir=../../SkimOut_160803
+export CrombieInFilesDir=../../Skim_161027
 
 if [ "$(hostname)" = "dabercro-MacBookAir" ]
 then

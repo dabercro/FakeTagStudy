@@ -14,7 +14,7 @@ export CrombieEosDir=/store/user/dabercro
 #export CrombieEosDir=80X.txt
 export CrombieRegDir=/afs/cern.ch/work/d/dabercro/eoscms/cms$CrombieEosDir
 export CrombieTempDir=/afs/cern.ch/work/d/dabercro/public/Fall16/Temp
-export CrombieFullDir=../../Full_$CROMBIEDATE
+export CrombieFullDir=../../FullOut_160804
 export CrombieSkimDir=../../Skim_$CROMBIEDATE
 export CrombieDirList=VA.txt
 
