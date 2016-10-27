@@ -1,0 +1,270 @@
+\documentclass{beamer}
+
+\author[D. Abercrombie]{
+  Daniel Abercrombie
+}
+
+\title{\bf \sffamily V-Tagging Fake Rate Scale Factor}
+\date{\today}
+
+\usecolortheme{dove}
+
+\usepackage[absolute,overlay]{textpos}
+\usefonttheme{serif}
+\usepackage{appendixnumberbeamer}
+\usepackage{isotope}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\setbeamerfont{frametitle}{size=\Large,series=\bf\sffamily}
+\setbeamertemplate{frametitle}[default][center]
+\usepackage{siunitx}
+\usepackage{tabularx}
+\usepackage{makecell}
+
+\setbeamertemplate{navigation symbols}{}
+\usepackage{graphicx}
+\usepackage{color}
+\setbeamertemplate{footline}[text line]{\parbox{1.083\linewidth}{\footnotesize \hfill \insertshortauthor \hfill \insertpagenumber /\inserttotalframenumber}}
+\setbeamertemplate{headline}[text line]{\parbox{1.083\linewidth}{\footnotesize \hspace{-0.083\linewidth} \textcolor{blue}{\sffamily \insertsection \hfill \insertsubsection}}}
+
+\usepackage{changepage}
+
+\newcommand{\beginbackup}{
+  \newcounter{framenumbervorappendix}
+  \setcounter{framenumbervorappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+  \addtocounter{framenumbervorappendix}{-\value{framenumber}}
+  \addtocounter{framenumber}{\value{framenumbervorappendix}}
+}
+
+\graphicspath{{figs/}}
+
+\begin{document}
+
+\begin{frame}[nonumbering]
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introduction}
+
+  A $\gamma$ + jets selection is used to simulate background jets for V-tagging purposes.
+  The scale factor can either be applied to the $\gamma$ + jets
+  Mono-V control region in the global fit,
+  or it can be used as a cross fit for the scale factor ``measured'' by the global fit.
+
+  \vspace{24pt}
+
+  A side effect of this study is showing the $\gamma$ + hadronic V
+  contribution is negligible through private MadGraph samples.
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Introduction (continued)}
+
+  Currently, the Mono-V analysis has a measured scale factor for the signal-like backgrounds
+  since these backgrounds do not have a corresponding control region.
+  There is no direct scale factor for other backgrounds.
+  The most significant background contributions are adjusted by a global fit.
+  By using a direct scale factor, the fit complexity can be reduced.
+  This scale factor can also be used for other minor backgrounds if we assume their
+  tagging variable distributions (pruned mass and $\tau_2/\tau_1$)
+  are shaped and mis-modelled similarly to $\gamma$ + jets.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Datasets}
+  {\scriptsize
+    \begin{itemize}
+    \item GJets\_HT-*\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8
+    \item QCD\_HT*\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8
+    \item WJetsToLNu\_Pt-*\_TuneCUETP8M1\_13TeV-amcatnloFXFX-pythia8
+    \item Privately produced $\gamma$ + hadronic vector. \\
+      (Not significant, less than 0.1\% after V-tagging cuts)
+    \item \textcolor{gray}{DYJetsToLL\_M-50\_HT-*\_TuneCUETP8M1\_13TeV-madgraphMLM-pythia8}
+    \item \textcolor{gray}{TT\_TuneCUETP8M1\_13TeV-powheg-pythia8}
+    \item \textcolor{gray}{ST\_t\{,W\}-*\_inclusiveDecays\_13TeV-powhegV2-madspin-pythia8\_TuneCUETP8M1}
+    \item \textcolor{gray}{\{WW,WZ,ZZ\}\_TuneCUETP8M1\_13TeV-pythia8}
+    \end{itemize}
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Selection}
+  This is almost the same as the mono-jet selection except
+  there is no veto on V jets and no noise cleaning cuts \\
+  (like mono-jet ID and $\Delta\phi$ between jets and recoil)
+  \begin{itemize}
+  \item Veto loose b-jets (csv $> 0.605$)
+  \item Recoil $> \SI{250}{GeV}$
+  \item Fat jet $p_T > \SI{250}{GeV}$
+  \item Veto $\tau$
+  \item One medium photon ($p_T > \SI{175}{GeV}$)
+  \item Veto leptons or additional $\gamma$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{$\gamma$ + jets Distributions}
+  The V-tagging variables before V-tagging selections
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{161027/photon_nocut_fatjet1PrunedML2L3.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{161027/photon_nocut_fatjet1tau21.pdf}
+    \end{column}
+  \end{columns}
+  My $\gamma$ + jets selection seems to have a good yeild agreement.
+\end{frame}
+
+\begin{frame}
+  \frametitle{$\gamma$ + jets Distributions After Tagging}
+  The V-tagging variables after selections \\
+  ($\tau_2/\tau_1 < 0.6$ and $\SI{65}{GeV} < m_{pruned} < \SI{105}{GeV}$)
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{161027/photon_full_fatjet1PrunedML2L3.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{161027/photon_full_fatjet1tau21.pdf}
+    \end{column}
+  \end{columns}
+  Yield is underestimated slightly, so scale factor less than one expected.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Method and Systematics}
+  We repeat the method of getting the V-tagging scale factor with a cut and count analysis.
+  (\href{https://indico.cern.ch/event/559594/contributions/2257923/attachments/1316800/1973048/dabercro_WTagStudy_160727.pdf}
+  {Details here})
+
+  Systematics from the previous study:
+  \begin{itemize}
+  \item Jet Smearing -- hybrid smearing from [*] affects the mass and $p_T$ of the jet
+  \item Background subtraction magnitude
+  \item Which background is subtracted
+  \item Shower effect on purity cuts -- instead, we'll compare QCD and photon purity modelling
+  \end{itemize}
+
+  The ``backgrounds'' are not relevant.
+  $\gamma$ + hadronic V is actually the most signal-like background in this region.
+
+  {\small [*] 
+    \href{https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetResolution#Smearing_procedures}
+         {https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetResolution}}
+\end{frame}
+
+\begin{frame}
+  \frametitle{$\gamma$ + jets Scale Factors}
+
+  \begin{adjustwidth}{-1.5em}{-1.5em}
+    {\tiny
+      \begin{tabular}{c|c|c|c|c}
+        \hline
+        & No Cut & $m_\text{pruned}$ & $\tau_2/\tau_1$ & V-tag cut \\
+        \hline
+        \makecell{Background \\ Subtracted \\ Data} & 146220.46 $\pm$ 382.63 & 17155.45 $\pm$ 131.34 & 33067.40 $\pm$ 182.18 & 12468.01 $\pm$ 112.07 \\
+        \makecell{Signal-\\ matched MC} & 148741.23 $\pm$ 663.36 & 19194.63 $\pm$ 233.88 & 36429.22 $\pm$ 320.87 & 13401.97 $\pm$ 199.18 \\
+        \hline
+        \makecell{Normalized \\ Ratio} & 1.00 $\pm$ 0.01 & 0.91 $\pm$ 0.01 & 0.92 $\pm$ 0.01 & \fcolorbox{red}{yellow}{0.95 $\pm$ 0.02} \\
+        \hline
+      \end{tabular}
+    }
+  \end{adjustwidth}
+
+  \vspace{24pt}
+
+  Background subtraction is the signal-like backgrounds: top, di-boson, $\gamma$ + V.
+  Together, these are a fraction of a percent. 
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Systematic Uncertianties}
+
+  QCD gives $\pm 0.3$ \\
+
+  \begin{adjustwidth}{-1.5em}{-1.5em}
+    {\tiny
+      \begin{tabular}{c|c|c|c|c}
+        \hline
+        & No Cut & $m_\text{pruned}$ & $\tau_2/\tau_1$ & V-tag cut \\
+        \hline
+        \makecell{Background \\ Subtracted \\ Data} & 146230.21 $\pm$ 382.64 & 17155.76 $\pm$ 131.33 & 33066.12 $\pm$ 182.17 & 12466.24 $\pm$ 112.05 \\
+        \makecell{Signal-\\ matched MC} & 152036.24 $\pm$ 735.88 & 20334.27 $\pm$ 278.48 & 37959.01 $\pm$ 367.05 & 14086.83 $\pm$ 234.96 \\
+        \hline
+        \makecell{Normalized \\ Ratio} & 1.00 $\pm$ 0.01 & 0.88 $\pm$ 0.01 & 0.91 $\pm$ 0.01 & \fcolorbox{red}{yellow}{0.92 $\pm$ 0.02} \\
+        \hline
+      \end{tabular}
+    }
+  \end{adjustwidth}
+
+  \vspace{12pt}
+  Smearing (up gives the largest difference) gives $\pm 0.02$ \\
+
+  \begin{adjustwidth}{-1.5em}{-1.5em}
+    {\tiny
+      \begin{tabular}{c|c|c|c|c}
+        \hline
+        & No Cut & $m_\text{pruned}$ & $\tau_2/\tau_1$ & V-tag cut \\
+        \hline
+        \makecell{Background \\ Subtracted \\ Data} & 199613.57 $\pm$ 447.07 & 17154.75 $\pm$ 131.34 & 33067.05 $\pm$ 182.18 & 12468.81 $\pm$ 112.07 \\
+        \makecell{Signal-\\ matched MC} & 204154.34 $\pm$ 823.25 & 19872.40 $\pm$ 236.32 & 37113.52 $\pm$ 323.20 & 13135.39 $\pm$ 193.35 \\
+        \hline
+        \makecell{Normalized \\ Ratio} & 1.00 $\pm$ 0.00 & 0.88 $\pm$ 0.01 & 0.91 $\pm$ 0.01 & \fcolorbox{red}{yellow}{0.97 $\pm$ 0.02} \\
+        \hline
+      \end{tabular}
+    }
+  \end{adjustwidth}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Recoil Dependence?}
+  With $\gamma$ + jets, we may be able to measure any recoil dependence on the fake scale factor
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      Before V-tagging \\
+      \includegraphics[width=\linewidth]{161027/photon_nocut_recoil.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      After V-tagging \\
+      \includegraphics[width=\linewidth]{161027/photon_full_recoil.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Conclusions}
+
+  \begin{itemize}
+  \item At a first pass, I get a scale factor of \fcolorbox{red}{yellow}{$0.95 \pm 0.04$}.
+  \item This can be applied to the $\gamme$ + jets Mono-V control region
+    to see how the fit is affected.
+  \item Recoil dependence can also be determined, if desired
+  \end{itemize}
+
+\end{frame}
+
+\beginbackup
+
+\begin{frame}
+  \frametitle{Backup Slides}
+\end{frame}
+
+\input{backup_slides.tex}
+
+\backupend
+
+\end{document}
