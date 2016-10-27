@@ -6,6 +6,7 @@ OutTree.h
 OutTree.cc
 *.root
 slimmer/files/Spring*
+plotter/plots/*
 out.*
 *.log
 *.pyc
