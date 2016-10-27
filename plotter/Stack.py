@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from CrombieTools.PlotTools.PlotStack import *
+import sys
 
 SetupFromEnv()
 
@@ -10,7 +11,7 @@ plotter.SetTreeName('events')
 plotter.SetAllHistName('htotal')
 plotter.SetLegendLocation(plotter.kUpper,plotter.kRight,0.25,0.5)
 plotter.SetEventsPer(1.0)
-plotter.SetMinLegendFrac(0.0)
+plotter.SetMinLegendFrac(0.01)
 plotter.SetIgnoreInLinear(0.005)
 plotter.SetOthersColor(922)
 plotter.SetFontSize(0.03)
@@ -18,10 +19,10 @@ plotter.SetAxisTitleOffset(1.2)
 plotter.SetRatioMinMax(0,2)
 plotter.SetMakeRatio(True)
 
-#plotter.SetDebugLevel(plotter.eDebug)
+plotter.SetDebugLevel(plotter.eInfo)
 
 def SetupArgs():
-    return [
+    return_list = [
         ['npv',50,0,50,'NPV','Events/1.0'],
         ['fatjet1Pt',25,100,600,'p_{T} [GeV]','Events/1.0'],
         ['fatjet1PtSmearedCentral',25,100,600,'p_{T} [GeV]','Events/1.0'],
@@ -40,15 +41,21 @@ def SetupArgs():
         ['fatjet1DRGenW',25,0,5,'#Delta R(j,W)','Events/1.0'],
         ]
 
+    if len(sys.argv) > 2:
+        return [member for member in return_list if member[0] in sys.argv[2:]]
+
+    return return_list
+
 if __name__ == '__main__':
     plotter.AddDataFile('fakescale_Data.root')
     MakePlots(
         # Categories
-        ['dilep',
-         'diele',
-         'dimu',
-         'photon',
-         ],
+        sys.argv[1:2] or [
+            'dilep',
+            'diele',
+            'dimu',
+            'photon',
+            ],
         # Regions
         ['nocut',
          'full',

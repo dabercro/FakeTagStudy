@@ -9,11 +9,8 @@ SetupFromEnv()
 
 histAnalysis.SetPrintingMethod(histAnalysis.kPresentation)
 
-histAnalysis.ResetConfig()
-histAnalysis.ReadMCConfig('MCSignal.txt')
 histAnalysis.AddDataFile('fakescale_Data.root')
 histAnalysis.SetSignalName('Signal')
-histAnalysis.SetSearchBy(histAnalysis.kLegendEntry)
 histAnalysis.SetMCWeight('(' + cuts.defaultMCWeight + ')')
 
 def theCuts(cat):
