@@ -65,3 +65,4 @@ jet_ht_boosted/F=0
 genBosPt/F=-1
 genBosPdgId/I=0
 recoil/F=-5
+fatjet1QGMatching/I=-1

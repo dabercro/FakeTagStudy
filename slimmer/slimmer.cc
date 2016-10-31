@@ -13,7 +13,7 @@
 
 #include "KinematicFunctions.h"
 #include "OutTree.h"
-#include "NeroTree.h"
+#include "NeroMonoJet.h"
 #include "JetSmearer.h"
 
 enum TauSelection{
@@ -69,7 +69,7 @@ Bool_t PassIso(Float_t lepPt, Float_t lepEta, Float_t lepIso, Int_t lepPdgId, Is
   return (lepIso/lepPt) < isoCut;
 }
 
-float GetMaxBTag(Int_t iFatjet, NeroTree *inTree) {
+float GetMaxBTag(Int_t iFatjet, NeroMonoJet *inTree) {
   Int_t nSubjets = (*(inTree->fatjetAK8CHSnSubjets))[iFatjet];
   Int_t firstSubjet = (*(inTree->fatjetAK8CHSfirstSubjet))[iFatjet];
   float maxsjbtag = -1.0;
@@ -93,7 +93,7 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
 
   TFile *inFile           = TFile::Open(inFileName);
   TTree *inTreeFetch      = (TTree*) inFile->Get("nero/events");
-  NeroTree *inTree  = new NeroTree(inTreeFetch);
+  NeroMonoJet *inTree     = new NeroMonoJet(inTreeFetch);
   TTree *allTree          = (TTree*) inFile->Get("nero/all");
   Float_t mcWeight        = 0.;
   TBranch *mcWeightBranch = allTree->GetBranch("mcWeight");
@@ -432,7 +432,7 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
         outTree->fatjet1SoftDropM = (*(inTree->fatjetAK8CHSSoftdropMass))[iFatJet];
         outTree->fatjet1tau21 = (*(inTree->fatjetAK8CHSTau2))[iFatJet]/(*(inTree->fatjetAK8CHSTau1))[iFatJet];
         outTree->fatjet1tau32 = (*(inTree->fatjetAK8CHSTau3))[iFatJet]/(*(inTree->fatjetAK8CHSTau2))[iFatJet];
-        outTree->fatjet1QJetVol = (*(inTree->fatjetAK8CHSQJetVol))[iFatJet];
+        // outTree->fatjet1QJetVol = (*(inTree->fatjetAK8CHSQJetVol))[iFatJet];
 
         outTree->fatjet1MaxBTag = GetMaxBTag(iFatJet,inTree);
 
@@ -450,12 +450,27 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
 
           Int_t WIndex = -1;
 
+          Double_t QGEnergy = 0.0;
+          Int_t QGCat = -1;
+
           for (Int_t iGen = 0; iGen < inTree->genP4->GetEntries(); iGen++) {
+            TLorentzVector *tempGen = (TLorentzVector*) inTree->genP4->At(iGen);
             Int_t checkPdgId = abs((*(inTree->genPdgId))[iGen]);
+
+            if (checkPdgId < 6)
+              QGCat = 0;
+            else if (checkPdgId == 21)
+              QGCat = 1;
+
+            if (QGCat != -1) {
+              if (tempGen->Energy() > QGEnergy) {
+                QGEnergy = tempGen->Energy();
+                outTree->fatjet1QGMatching = QGCat;
+              }
+            }
+
             if (checkPdgId < 22 || checkPdgId > 24)
               continue;
-
-            TLorentzVector *tempGen = (TLorentzVector*) inTree->genP4->At(iGen);
 
             if (tempGen->Pt() < 100)
               continue;

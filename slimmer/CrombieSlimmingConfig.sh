@@ -1,6 +1,6 @@
 export CrombieFilesPerJob=20
-export CrombieNBatchProcs=1
-export CrombieQueue=1nh
+export CrombieNBatchProcs=4
+export CrombieQueue=2nw4cores
 
 if [ "$(hostname)" = "dabercro-MacBookAir" ]
 then
@@ -10,11 +10,11 @@ else
 fi
 
 export CrombieFileBase=fakescale
-export CrombieEosDir=/store/user/dabercro
+export CrombieEosDir=WithVA.txt
 #export CrombieEosDir=80X.txt
 export CrombieRegDir=/afs/cern.ch/work/d/dabercro/eoscms/cms$CrombieEosDir
 export CrombieTempDir=/afs/cern.ch/work/d/dabercro/public/Fall16/Temp
-export CrombieFullDir=../../FullOut_160804
+export CrombieFullDir=../../FullOut_$CROMBIEDATE
 export CrombieSkimDir=../../Skim_$CROMBIEDATE
 export CrombieDirList=VA.txt
 

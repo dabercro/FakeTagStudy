@@ -18,7 +18,7 @@ enum SmearType { kCentral = 0, kUp, kDown };
 
 class JetSmearer {
  public:
-  JetSmearer (NeroTree* thisTree) { fNeroTree = thisTree; }
+  JetSmearer (NeroMonoJet* thisTree) { fNeroMonoJet = thisTree; }
   virtual ~JetSmearer() {}
 
   void ReadSFConfig   ( TString configName );
@@ -28,7 +28,7 @@ class JetSmearer {
 
  private:
 
-  NeroTree *fNeroTree;
+  NeroMonoJet *fNeroMonoJet;
 
   std::vector<Float_t> SFDownEta;
   std::vector<Float_t> SFUpEta;
@@ -155,8 +155,8 @@ Float_t JetSmearer::GetSmeared(Float_t rho, Float_t jetPt, Float_t jetEta, Float
   else
     return toSmear;
 
-  for (Int_t iGenJet = 0; iGenJet < fNeroTree->genjetP4->GetEntries(); iGenJet++) {
-    TLorentzVector *tempGenJet = (TLorentzVector*) fNeroTree->genjetP4->At(iGenJet);
+  for (Int_t iGenJet = 0; iGenJet < fNeroMonoJet->genjetP4->GetEntries(); iGenJet++) {
+    TLorentzVector *tempGenJet = (TLorentzVector*) fNeroMonoJet->genjetP4->At(iGenJet);
 
     if (deltaR(tempGenJet->Eta(), tempGenJet->Phi(), jetEta, jetPhi) < 0.4 &&
         fabs(tempGenJet->Pt() - jetPt) < (3 * res * jetPt)) {
