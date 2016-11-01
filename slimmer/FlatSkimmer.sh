@@ -29,10 +29,15 @@ mv $CrombieSkimDir/*DYJetsToLL_M-50_HT-*.root $CrombieSkimDir/Z/.
 ./applyCorrectionsA.py $CrombieSkimDir/A
 ./applyCorrectionsZ.py $CrombieSkimDir/Z
 
+test -d $CrombieSkimDir/Quark || mkdir $CrombieSkimDir/Quark
+test -d $CrombieSkimDir/Gluons || mkdir $CrombieSkimDir/Gluons
+
+crombie skim --cut 'fatjet1QGMatching == 0' --tree 'events' --copy 'htotal' --run 'runNum' --lumi 'lumiNum' --freq 100000 --numproc $CrombieNLocalProcs --indir $CrombieSkimDir --outdir $CrombieSkimDir/Quark --json $CrombieGoodRuns
+
+crombie skim --cut 'fatjet1QGMatching != 0' --tree 'events' --copy 'htotal' --run 'runNum' --lumi 'lumiNum' --freq 100000 --numproc $CrombieNLocalProcs --indir $CrombieSkimDir --outdir $CrombieSkimDir/Gluons --json $CrombieGoodRuns
+
 mv $CrombieSkimDir/A/*.root $CrombieSkimDir/.
 mv $CrombieSkimDir/Z/*.root $CrombieSkimDir/.
-
-rmdir $CrombieSkimDir/A $CrombieSkimDir/Z
 
 ./applyPurity.py $CrombieSkimDir/Purity
 
@@ -44,3 +49,5 @@ fi
 hadd -f ../../Data/fakescale_Data.root $CrombieSkimDir/*MET* $CrombieSkimDir/*Single*
 
 crombie skim --cut '(n_loosepho == 0 || n_looselep == 0) && n_bjetsLoose == 0 && recoil > 200' --tree 'events' --copy 'htotal' --run 'runNum' --lumi 'lumiNum' --freq 100000 --numproc 1 --indir ../../Data --outdir $CrombieSkimDir --json $CrombieGoodRuns -d
+
+rmdir $CrombieSkimDir/A $CrombieSkimDir/Z

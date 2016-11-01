@@ -1,5 +1,4 @@
-export CrombieFilesPerJob=20
-export CrombieNBatchProcs=4
+export CrombieFilesPerJob=30
 export CrombieQueue=2nw4cores
 
 if [ "$(hostname)" = "dabercro-MacBookAir" ]
