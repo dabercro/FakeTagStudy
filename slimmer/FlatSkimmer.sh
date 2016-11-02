@@ -46,8 +46,12 @@ then
     mkdir ../../Data
 fi
 
-hadd -f ../../Data/fakescale_Data.root $CrombieSkimDir/*MET* $CrombieSkimDir/*Single*
+# hadd -f ../../Data/fakescale_Data.root $CrombieSkimDir/*Single* $CrombieSkimDir/*MET*
 
-crombie skim --cut '(n_loosepho == 0 || n_looselep == 0) && n_bjetsLoose == 0 && recoil > 200' --tree 'events' --copy 'htotal' --run 'runNum' --lumi 'lumiNum' --freq 100000 --numproc 1 --indir ../../Data --outdir $CrombieSkimDir --json $CrombieGoodRuns -d
+# crombie skim --cut '(n_loosepho == 0 || n_looselep == 0) && n_bjetsLoose == 0 && recoil > 200' --tree 'events' --copy 'htotal' --run 'runNum' --lumi 'lumiNum' --freq 100000 --numproc 1 --indir ../../Data --outdir $CrombieSkimDir --json $CrombieGoodRuns -d
+
+cd $CrombieSkimDir
+ln -s fakescale_SinglePhoton.root fakescale_Data.root
+cd -
 
 rmdir $CrombieSkimDir/A $CrombieSkimDir/Z
