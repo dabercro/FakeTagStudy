@@ -277,9 +277,11 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
       vec3 = vec1 + vec2;
       outTree->recoil = vec3.Pt();
     }
+    else
+      continue;
 
-    // if (outTree->recoil < 0)
-    //   continue;
+    if (outTree->recoil < 180)
+      continue;
 
     Double_t checkDPhi = 5.0;
     Double_t clean_checkDPhi = 5.0;
@@ -342,6 +344,9 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
           continue;
       }
     }
+
+    if (outTree->n_bjetsLoose != 0)
+      continue;
 
     // std::cout << "//// Now check number of non-overlapping taus ////" << std::endl;
 
@@ -457,13 +462,15 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
             TLorentzVector *tempGen = (TLorentzVector*) inTree->genP4->At(iGen);
             Int_t checkPdgId = abs((*(inTree->genPdgId))[iGen]);
 
+            checkDR = deltaR(outTree->fatjet1Phi,outTree->fatjet1Eta,tempGen->Phi(),tempGen->Eta());
+
             if (checkPdgId < 6)
               QGCat = 0;
             else if (checkPdgId == 21)
               QGCat = 1;
 
             if (QGCat != -1) {
-              if (tempGen->Energy() > QGEnergy) {
+              if (tempGen->Energy() > QGEnergy && checkDR < 0.6) {
                 QGEnergy = tempGen->Energy();
                 outTree->fatjet1QGMatching = QGCat;
               }
@@ -480,7 +487,6 @@ void slimmer(TString inFileName, TString outFileName, Bool_t isSig = false) {
               outTree->genBosPdgId = (*(inTree->genPdgId))[iGen];
             }
 
-            checkDR = deltaR(outTree->fatjet1Phi,outTree->fatjet1Eta,tempGen->Phi(),tempGen->Eta());
             if (checkDR < outTree->fatjet1DRGenW) {
               outTree->fatjet1DRGenW   = checkDR;
               WIndex = iGen;
