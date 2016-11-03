@@ -7,8 +7,8 @@ source CrombieSlimmingConfig.sh
 if [ "$fresh" = "fresh" ]
 then
     rm $CrombieSkimDir/*.root 2> /dev/null
-    rm $CrombieSkimDir/A/*.root 2> /dev/null
-    rm $CrombieSkimDir/Z/*.root 2> /dev/null
+    rm $CrombieSkimDir/Quark/*.root 2> /dev/null
+    rm $CrombieSkimDir/Gluon/*.root 2> /dev/null
     rm $CrombieSkimDir/Purity/*.root 2> /dev/null
     rm *.pyc
 fi
