@@ -51,7 +51,18 @@ def main(cat):
     for name, cut in theCuts(cat):
         histAnalysis.AddScaleFactorCut(name, cut)
 
-    histAnalysis.DoScaleFactors('n_tightlep',1,0,2)
+    histAnalysis.DoScaleFactors('n_tightlep', 1, 0, 2)
+
+    return
+
+    printBig('npv %s to %s' % (0, 10))
+    histAnalysis.DoScaleFactors('npv', 1, 0, 10)
+    printBig('npv %s to %s' % (10, 20))
+    histAnalysis.DoScaleFactors('npv', 1, 10, 20)
+    printBig('npv %s to %s' % (20, 30))
+    histAnalysis.DoScaleFactors('npv', 1, 20, 30)
+    printBig('npv %s to %s' % (30, 40))
+    histAnalysis.DoScaleFactors('npv', 1, 30, 40)
 
 
 if __name__ == "__main__":
