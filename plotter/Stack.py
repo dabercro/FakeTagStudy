@@ -3,6 +3,8 @@
 from CrombieTools.PlotTools.PlotStack import *
 import sys
 
+plotter.SetDebugLevel(plotter.eInfo)
+
 SetupFromEnv()
 
 plotter.SetStackLineWidth(2)
@@ -19,8 +21,6 @@ plotter.SetAxisTitleOffset(1.2)
 plotter.SetRatioMinMax(0,2)
 plotter.SetMakeRatio(True)
 plotter.SetForceTop("#gamma + jets (Quark)")
-
-plotter.SetDebugLevel(plotter.eInfo)
 
 def SetupArgs():
     return_list = [

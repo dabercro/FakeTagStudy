@@ -11,7 +11,7 @@ histAnalysis.SetPrintingMethod(histAnalysis.kPresentation)
 
 histAnalysis.AddDataFile('fakescale_Data.root')
 histAnalysis.SetSignalName('Signal')
-histAnalysis.SetMCWeight('(' + cuts.defaultMCWeight + ')')
+histAnalysis.SetMCWeight(cuts.defaultMCWeight)
 
 def theCuts(cat):
     return [

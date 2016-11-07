@@ -7,10 +7,7 @@ source CrombieSlimmingConfig.sh
 if [ "$fresh" = "fresh" ]
 then
     rm $CrombieSkimDir/*.root 2> /dev/null
-    rm $CrombieSkimDir/Quark/*.root 2> /dev/null
-    rm $CrombieSkimDir/Gluon/*.root 2> /dev/null
-    rm $CrombieSkimDir/Purity/*.root 2> /dev/null
-    rm *.pyc
+    rm $CrombieSkimDir/*/*.root 2> /dev/null
 fi
 
 crombie skim --cut '(n_loosepho == 0 || n_looselep == 0) && n_bjetsLoose == 0 && recoil > 200' --tree 'events' --copy 'htotal' --run 'runNum' --lumi 'lumiNum' --freq 100000 --numproc $CrombieNLocalProcs --indir $CrombieFullDir --outdir $CrombieSkimDir --json $CrombieGoodRuns
