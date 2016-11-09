@@ -4,7 +4,7 @@
   Daniel Abercrombie
 }
 
-\title{\bf \sffamily Title Here}
+\title{\bf \sffamily Some Things About Mono-V}
 \date{\today}
 
 \usecolortheme{dove}
@@ -61,12 +61,14 @@
 
   \begin{columns}
     \begin{column}{0.5\linewidth}
-      \includegraphics[width=0.5\linewidth]{161109_1/nocut_signal_fatjet1tau21.pdf} \\
-      \includegraphics[width=0.5\linewidth]{161109_1/nocut_gjets_fatjet1tau21.pdf}
+      \centering
+      \includegraphics[width=0.6\linewidth]{161109_1/nocut_signal_fatjet1tau21.pdf} \\
+      \includegraphics[width=0.6\linewidth]{161109_1/nocut_gjets_fatjet1tau21.pdf}
     \end{column}
     \begin{column}{0.5\linewidth}
-      \includegraphics[width=0.5\linewidth]{161109_1/nocut_signal_fatjet1PrunedML2L3.pdf} \\
-      \includegraphics[width=0.5\linewidth]{161109_1/nocut_gjets_fatjet1PrunedML2L3.pdf}
+      \centering
+      \includegraphics[width=0.6\linewidth]{161109_1/nocut_signal_fatjet1PrunedML2L3.pdf} \\
+      \includegraphics[width=0.6\linewidth]{161109_1/nocut_gjets_fatjet1PrunedML2L3.pdf}
     \end{column}
   \end{columns}
 
@@ -77,14 +79,30 @@
 
   \begin{columns}
     \begin{column}{0.5\linewidth}
+      \centering
       Current \\
-      \includegraphics[width=0.5\linewidth]{161109_1/full_signal_fatjet1PrunedML2L3.pdf} \\
-      \includegraphics[width=0.5\linewidth]{161109_1/full_gjets_fatjet1PrunedML2L3.pdf}
+      \includegraphics[width=0.6\linewidth]{161109_1/full_signal_fatjet1PrunedML2L3.pdf} \\
+      \includegraphics[width=0.6\linewidth]{161109_1/full_gjets_fatjet1PrunedML2L3.pdf}
     \end{column}
     \begin{column}{0.5\linewidth}
+      \centering
       Tight \\
-      \includegraphics[width=0.5\linewidth]{161109_1/tight_signal_fatjet1PrunedML2L3.pdf} \\
-      \includegraphics[width=0.5\linewidth]{161109_1/tight_gjets_fatjet1PrunedML2L3.pdf}
+      \includegraphics[width=0.6\linewidth]{161109_1/tight_signal_fatjet1PrunedML2L3.pdf} \\
+      \includegraphics[width=0.6\linewidth]{161109_1/tight_gjets_fatjet1PrunedML2L3.pdf}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Potentially tighter cuts?}
+
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=\linewidth]{161109_1/full_gjets_met.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=\linewidth]{161109_1/tight_gjets_met.pdf}
     \end{column}
   \end{columns}
 
@@ -94,9 +112,9 @@
 
 \begin{frame}
   \frametitle{Scale Factors: Signal}
+
   Can simplify or help understand the global fit
 
-  \vspace{12pt}
   \begin{columns}
     \begin{column}{0.5\linewidth}
       \centering
@@ -111,6 +129,7 @@
                       {160726/semilep_full_fatjettau21.pdf}
     \end{column}
   \end{columns}
+
   Cut and count: \boxed{$0.97 \pm 0.04 \text{(stat.)} \pm 0.08 \text{(sys.)}$} \\
   Tighter $\tau_2/\tau_1$: \boxed{$0.92 \pm 0.04 \text{(stat.)} \pm 0.09 \text{(sys.)}$} \\
   Details: \url{http://t3serv001.mit.edu/~dabercro/dabercro_WTagStudy_160727.pdf}
@@ -118,6 +137,7 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{Scale Factors: Background}
 
   \begin{columns}
     \begin{column}{0.5\linewidth}
@@ -136,7 +156,55 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{}
+  \frametitle{Numbers Changing With Pileup}
+
+  Example: fake scale factor \\
+
+  \vspace{24pt}
+  \centering
+
+  NPV 10 to 20: $0.94 $\pm$ 0.02$ \\
+  NPV 20 to 30: $0.90 $\pm$ 0.03$ \\ 
+  NPV 30 to 40: $0.86 $\pm$ 0.09$
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Reweighing}
+
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{161109/checkshape.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{161027/photon_nocut_fatjet1PrunedML2L3.pdf}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Conclusions}
+
+  \begin{itemize}
+  \item There's not much time to change things for Moriond,
+    but I expect more problems with systematics as pileup increases.
+  \item With our clean method of doing scale factors,
+    we can do something much messier for tagging.
+  \end{itemize}
+
+\end{frame}
+
+\beginbackup
+
+\begin{frame}
+  \frametitle{Backup Slides}
+\end{frame}
+
+\begin{frame}
+  \frametitle{W-jets Aren't Always Merged}
   \textcolor{blue}{\scriptsize \hspace{-35pt} Signal: Axial
     $m_\text{med} = \SI{2000}{GeV}$,
     $m_\text{DM} = \SI{50}{GeV}$}
@@ -162,12 +230,6 @@
 
   Tagging boosted objects works, and is cleaner than resolved analyses, but it's relatively lazy.
 
-\end{frame}
-
-\beginbackup
-
-\begin{frame}
-  \frametitle{Backup Slides}
 \end{frame}
 
 \input{backup_slides.tex}

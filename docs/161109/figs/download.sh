@@ -39,6 +39,8 @@ crombie downloadtar "http://dabercro.web.cern.ch/dabercro/plotviewer/viewplot/st
 
 crombie downloadtar "http://dabercro.web.cern.ch/dabercro/plotviewer/viewplot/static/viewplot/returntar.php?only=pdf&files=160802/dilep_full_fatjet1tau21,160802/dilep_nocut_fatjet1tau21,160802/dilep_full_fatjet1PrunedML2L3,160802/dilep_nocut_fatjet1PrunedML2L3"
 
+crombie downloadtar "http://dabercro.web.cern.ch/dabercro/plotviewer/viewplot/static/viewplot/returntar.php?only=pdf&files=161109/checkshape"
+
 for f in */*.pdf
 do
     pdfcrop $f $f
