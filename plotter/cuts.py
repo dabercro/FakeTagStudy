@@ -38,7 +38,7 @@ categoryCuts = {
             'fatjet1PrunedML2L3 > 65',
             'fatjet1PrunedML2L3 < 105',
             ]),
-    'tight' : 'fatjet1tau21 < 0.4'
+    'tight' : 'fatjet1tau21 < 0.45'
     }
 
 categoryCuts['full'] += ' && ' + categoryCuts['nocut']

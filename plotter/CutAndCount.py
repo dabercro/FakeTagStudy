@@ -16,7 +16,7 @@ def theCuts(cat):
     return [
         ('$m_\\text{pruned}$', 'fatjet1PrunedM > 65 && fatjet1PrunedM < 105'),
         ('$\\tau_2/\\tau_1$', 'fatjet1tau21 < 0.6'),
-        ('V-tag cut', cuts.cut(cat,'full'))
+        ('V-tag cut', cuts.cut('full', cat))
         ]
  
 
@@ -31,7 +31,7 @@ def getSmear(cat, whichDir):
 
     printBig('Smeared' + whichDir)
 
-    histAnalysis.SetBaseCut(Nminus1Cut(cuts.cut(cat,'nocut'),'fatjet1Pt'))
+    histAnalysis.SetBaseCut(Nminus1Cut(cuts.cut('nocut', cat),'fatjet1Pt'))
     histAnalysis.ResetScaleFactorCuts()
 
     for name, cut in theCuts(cat):
@@ -45,7 +45,7 @@ def getSmear(cat, whichDir):
 def main(cat):
     printBig(cat)
     histAnalysis.ResetScaleFactorCuts()
-    histAnalysis.SetBaseCut(cuts.cut(cat,'nocut'))
+    histAnalysis.SetBaseCut(cuts.cut('nocut', cat))
 
     for name, cut in theCuts(cat):
         histAnalysis.AddScaleFactorCut(name, cut)
