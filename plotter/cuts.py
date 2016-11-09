@@ -15,7 +15,7 @@ dilep = ' && '.join([
         'n_mediumlep == 2',
         ])
 
-categoryCuts = {
+regionCuts = {
     'dilep' : dilep,
     'diele' : dilep + ' && lep1PdgId * lep2PdgId == -121',
     'dimu' : dilep + ' && lep1PdgId * lep2PdgId == -169',
@@ -28,7 +28,7 @@ categoryCuts = {
             ]),
     }
 
-regionCuts = {
+categoryCuts = {
     'nocut' : ' && '.join([
             'fatjet1Pt > 250',
             'met > 250',
@@ -37,15 +37,12 @@ regionCuts = {
             'fatjet1tau21 < 0.6',
             'fatjet1PrunedML2L3 > 65',
             'fatjet1PrunedML2L3 < 105',
-            ])
+            ]),
+    'tight' : 'fatjet1tau21 < 0.4'
     }
 
-regionCuts['full'] += ' && ' + regionCuts['nocut']
-
-# These are just for the users to loop over
-
-categories = categoryCuts.keys()
-regions    = regionCuts.keys()
+categoryCuts['full'] += ' && ' + categoryCuts['nocut']
+categoryCuts['tight'] += ' && ' + categoryCuts['full']
 
 # Making selection of multiple entries
 
@@ -54,12 +51,21 @@ def joinCuts(toJoin=regionCuts.keys(), cuts=regionCuts):
 
 # A weight applied to all MC
 
-defaultMCWeight = 'mcFactors'
+defaultMCWeight = 'ewk_a*akfactor*ewk_z*zkfactor*ewk_w*wkfactor'
 
 # Additional weights applied to certain control regions
 
+trigger0 = '(triggerFired[10]==1 || triggerFired[11] == 1 || triggerFired[12] || triggerFired[13] == 1)' 
+trigger1 = '(triggerFired[0] || triggerFired[1] || triggerFired[2] || triggerFired[3] || triggerFired[4] || triggerFired[5] || triggerFired[26])'
+
 additions    = { # key : [Data,MC]
-    'signal'  : ['0','1'],
+    'signal'  : ['0','mcWeight*lepton_SF1*lepton_SF2*METTrigger*puWeight*topPtReweighting'],
+    'Zmm'     : [trigger0, 'mcWeight*lepton_SF1*lepton_SF2*METTrigger*puWeight*topPtReweighting*tracking_SF1*tracking_SF2'],
+    'Wmn'     : [trigger0, 'mcWeight*lepton_SF1*lepton_SF2*METTrigger*puWeight*topPtReweighting*tracking_SF1'],
+    'Wen'     : [trigger1, 'mcWeight*puWeight*EleTrigger_w1*EleTrigger_w2*lepton_SF1*topPtReweighting*gsfTracking_SF1'],
+    'Zee'     : [trigger1, 'mcWeight*puWeight*lepton_SF1*lepton_SF2*topPtReweighting*gsfTracking_SF1*gsfTracking_SF2'],
+    'gjets'   : ['(triggerFired[18] || triggerFired[19] || triggerFired[17] || triggerFired[5] || triggerFired[15] || triggerFired[16])',
+                 'mcWeight*PhoTrigger*topPtReweighting*photon_SF*puWeight'],
     'default' : ['1', defaultMCWeight]
     }
 
@@ -69,12 +75,12 @@ additions    = { # key : [Data,MC]
 # Generally you can probably leave these alone
 
 def cut(category, region):
-    if category in categoryCuts.keys():
-        catCut = categoryCuts[category]
+    if region in regionCuts.keys():
+        regionCut = regionCuts[region]
     else:
-        catCut = nm1(nm1(bs(category, 250), 'fatjet1PrunedM'), 'fatjet1tau21')
+        regionCut = nm1(nm1(bs(region, 250), 'fatjet1PrunedM'), 'fatjet1tau21')
 
-    return '((' + catCut + ') && (' + joinCuts(toJoin=region.split('+')) + '))'
+    return '((' + regionCut + ') && (' + categoryCuts[category] + '))'
 
 
 def dataMCCuts(region, isData):
@@ -87,6 +93,6 @@ def dataMCCuts(region, isData):
         index = 0
 
     if key == 'default' or index == 0:
-        return '(' + additions[key][index] + ')'
+        return 'metfilter==1 && filterbadChCandidate && filterbadPFMuon && (' + additions[key][index] + ')'
     else:
         return '((' + additions[key][index] + ')*(' + defaultMCWeight + '))'
