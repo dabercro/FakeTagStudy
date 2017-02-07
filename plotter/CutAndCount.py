@@ -9,7 +9,7 @@ SetupFromEnv()
 
 histAnalysis.SetPrintingMethod(histAnalysis.kPresentation)
 
-histAnalysis.SetSignalName('Signal')
+histAnalysis.SetSignalName('Background')
 histAnalysis.SetMCWeight(cuts.defaultMCWeight)
 
 def theCuts(cat):
@@ -31,6 +31,8 @@ def getSmear(cat, whichDir):
 
     printBig('Smeared' + whichDir)
 
+    printBig(cat)
+
     histAnalysis.SetBaseCut(Nminus1Cut(cuts.cut('nocut', cat),'fatjet1Pt'))
     histAnalysis.ResetScaleFactorCuts()
 
@@ -39,7 +41,7 @@ def getSmear(cat, whichDir):
         mccut = '(' + cut.replace('L2L3','L2L3Smeared' + whichDir) + ' && fatjet1PtSmeared' + whichDir + '  > 250)'
         histAnalysis.AddScaleFactorCut(name, mccut, datacut)
 
-    histAnalysis.DoScaleFactors('n_tightlep',1,0,2)
+    histAnalysis.DoScaleFactors('n_tightlep', 1, 0, 4)
 
 
 def main(cat):
@@ -50,12 +52,24 @@ def main(cat):
     for name, cut in theCuts(cat):
         histAnalysis.AddScaleFactorCut(name, cut)
 
-    histAnalysis.DoScaleFactors('n_tightlep',1,0,4)
+    histAnalysis.DoScaleFactors('n_tightlep', 1, 0, 4)
 
 
 if __name__ == "__main__":
-    histAnalysis.AddDataFile('monojet_MET.root')
+    histAnalysis.AddDataFile('../Skim_170111/monojet_Data.root')
     main('Zmm')
-    histAnalysis.ResetConfig(histAnalysis.kData)
-    histAnalysis.AddDataFile('monojet_SinglePhoton.root')
+    main('gjets')
+
+    for direction in ['Up', 'Down']:
+        getSmear('Zmm', direction)
+        getSmear('gjets', direction)
+
+    printBig('Scale Up')
+    histAnalysis.ChangeBackground(1.0)
+    main('Zmm')
+    main('gjets')
+
+    printBig('Scale Down')
+    histAnalysis.ChangeBackground(-0.5)
+    main('Zmm')
     main('gjets')

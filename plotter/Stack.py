@@ -3,12 +3,10 @@
 from CrombieTools.PlotTools.PlotStack import *
 from array import array
 
-#plotter.SetDebugLevel(plotter.eInfo)
-
 SetupFromEnv()
 
 plotter.SetStackLineWidth(2)
-plotter.SetCMSLabelType(plotter.kPreliminary)
+plotter.SetCMSLabel('Preliminary')
 plotter.SetTreeName('events')
 plotter.SetAllHistName('htotal')
 plotter.SetLegendLocation(plotter.kUpper,plotter.kRight,0.25,0.5)
@@ -33,8 +31,7 @@ def SetupArgs():
         ]
 
 if __name__ == '__main__':
-    plotter.AddDataFile('monojet_MET.root')
-    plotter.AddDataFile('monojet_SinglePhoton.root')
+    plotter.AddDataFile('../Skim_170111/monojet_Data.root')
     MakePlots(
         # Categories
         ['nocut',
