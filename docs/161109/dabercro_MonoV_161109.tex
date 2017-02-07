@@ -1,0 +1,239 @@
+\documentclass{beamer}
+
+\author[D. Abercrombie]{
+  Daniel Abercrombie
+}
+
+\title{\bf \sffamily Some Things About Mono-V}
+\date{\today}
+
+\usecolortheme{dove}
+
+\usepackage[absolute,overlay]{textpos}
+\usefonttheme{serif}
+\usepackage{appendixnumberbeamer}
+\usepackage{isotope}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\setbeamerfont{frametitle}{size=\Large,series=\bf\sffamily}
+\setbeamertemplate{frametitle}[default][center]
+\usepackage{siunitx}
+\usepackage{tabularx}
+\usepackage{makecell}
+
+\setbeamertemplate{navigation symbols}{}
+\usepackage{graphicx}
+\usepackage{color}
+\setbeamertemplate{footline}[text line]{\parbox{1.083\linewidth}{\footnotesize \hfill \insertshortauthor \hfill \insertpagenumber /\inserttotalframenumber}}
+\setbeamertemplate{headline}[text line]{\parbox{1.083\linewidth}{\footnotesize \hspace{-0.083\linewidth} \textcolor{blue}{\sffamily \insertsection \hfill \insertsubsection}}}
+
+\usepackage{changepage}
+
+\newcommand{\beginbackup}{
+  \newcounter{framenumbervorappendix}
+  \setcounter{framenumbervorappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+  \addtocounter{framenumbervorappendix}{-\value{framenumber}}
+  \addtocounter{framenumber}{\value{framenumbervorappendix}} 
+}
+
+\graphicspath{{figs/}}
+
+\begin{document}
+
+\begin{frame}[nonumbering]
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introduction}
+
+  The Hadronic Mono-V analysis is an analysis orthogonal to mono-jet,
+  with particularly good sensitivity for scalar mediators
+  (as I understand it).
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Currently used V-tagging variables}
+
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=0.6\linewidth]{161109_1/nocut_signal_fatjet1tau21.pdf} \\
+      \includegraphics[width=0.6\linewidth]{161109_1/nocut_gjets_fatjet1tau21.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=0.6\linewidth]{161109_1/nocut_signal_fatjet1PrunedML2L3.pdf} \\
+      \includegraphics[width=0.6\linewidth]{161109_1/nocut_gjets_fatjet1PrunedML2L3.pdf}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Potentially tighter cuts?}
+
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      Current \\
+      \includegraphics[width=0.6\linewidth]{161109_1/full_signal_fatjet1PrunedML2L3.pdf} \\
+      \includegraphics[width=0.6\linewidth]{161109_1/full_gjets_fatjet1PrunedML2L3.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      Tight \\
+      \includegraphics[width=0.6\linewidth]{161109_1/tight_signal_fatjet1PrunedML2L3.pdf} \\
+      \includegraphics[width=0.6\linewidth]{161109_1/tight_gjets_fatjet1PrunedML2L3.pdf}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Potentially tighter cuts?}
+
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=\linewidth]{161109_1/full_gjets_met.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=\linewidth]{161109_1/tight_gjets_met.pdf}
+    \end{column}
+  \end{columns}
+
+  I don't like how they look in $\gamma$ + jets, a rather important region for the analysis
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Scale Factors: Signal}
+
+  Can simplify or help understand the global fit
+
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \textcolor{blue}{Pruned Mass}
+      \includegraphics[width=\linewidth]
+                      {160726/semilep_full_fatjetPrunedML2L3.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \textcolor{blue}{N-subjettiness ($\tau_2/\tau_1$)}
+      \includegraphics[width=\linewidth]
+                      {160726/semilep_full_fatjettau21.pdf}
+    \end{column}
+  \end{columns}
+
+  Cut and count: \boxed{$0.97 \pm 0.04 \text{(stat.)} \pm 0.08 \text{(sys.)}$} \\
+  Tighter $\tau_2/\tau_1$: \boxed{$0.92 \pm 0.04 \text{(stat.)} \pm 0.09 \text{(sys.)}$} \\
+  Details: \url{http://t3serv001.mit.edu/~dabercro/dabercro_WTagStudy_160727.pdf}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Scale Factors: Background}
+
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{161027/photon_full_fatjet1PrunedML2L3.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{161027/photon_full_fatjet1tau21.pdf}
+    \end{column}
+  \end{columns}
+
+  Cut and count: \boxed{$0.95 \pm 0.02 \text{(stat.)} \pm 0.035 \text{(sys.)}$} \\
+  Tighter: Glorious crash needs investigating
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Numbers Changing With Pileup}
+
+  Example: fake scale factor \\
+
+  \vspace{24pt}
+  \centering
+
+  NPV 10 to 20: $0.94 $\pm$ 0.02$ \\
+  NPV 20 to 30: $0.90 $\pm$ 0.03$ \\ 
+  NPV 30 to 40: $0.86 $\pm$ 0.09$
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Reweighing}
+
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{161109/checkshape.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{161027/photon_nocut_fatjet1PrunedML2L3.pdf}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Conclusions}
+
+  \begin{itemize}
+  \item There's not much time to change things for Moriond,
+    but I expect more problems with systematics as pileup increases.
+  \item With our clean method of doing scale factors,
+    we can do something much messier for tagging.
+  \end{itemize}
+
+\end{frame}
+
+\beginbackup
+
+\begin{frame}
+  \frametitle{Backup Slides}
+\end{frame}
+
+\begin{frame}
+  \frametitle{W-jets Aren't Always Merged}
+  \textcolor{blue}{\scriptsize \hspace{-35pt} Signal: Axial
+    $m_\text{med} = \SI{2000}{GeV}$,
+    $m_\text{DM} = \SI{50}{GeV}$}
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \centering
+      \includegraphics[width=\linewidth]{160719/fatjetPrunedMx.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      There is some signal lost when we assume that a jet is merged.
+      It would be nice to think about how to get it back.
+      (I have no solutions at the moment.)
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}
+  \frametitle{My Opinions}
+
+  The current monojet and mono-V analyses are redone versions of the \SI{8}{TeV} analysis.
+  I don't really want to graduate on that.
+  The analyses are systematically limited, and will require a significant improvement to move past that.
+
+  Tagging boosted objects works, and is cleaner than resolved analyses, but it's relatively lazy.
+
+\end{frame}
+
+\input{backup_slides.tex}
+
+\backupend
+
+\end{document}

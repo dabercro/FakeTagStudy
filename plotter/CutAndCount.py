@@ -9,15 +9,14 @@ SetupFromEnv()
 
 histAnalysis.SetPrintingMethod(histAnalysis.kPresentation)
 
-histAnalysis.AddDataFile('fakescale_Data.root')
-histAnalysis.SetSignalName('Signal')
+histAnalysis.SetSignalName('Background')
 histAnalysis.SetMCWeight(cuts.defaultMCWeight)
 
 def theCuts(cat):
     return [
         ('$m_\\text{pruned}$', 'fatjet1PrunedML2L3 > 65 && fatjet1PrunedML2L3 < 105'),
         ('$\\tau_2/\\tau_1$', 'fatjet1tau21 < 0.6'),
-        ('V-tag cut', cuts.cut(cat,'full'))
+        ('V-tag cut', cuts.cut('full', cat))
         ]
 
 
@@ -32,7 +31,9 @@ def getSmear(cat, whichDir):
 
     printBig('Smeared' + whichDir)
 
-    histAnalysis.SetBaseCut(Nminus1Cut(cuts.cut(cat,'nocut'),'fatjet1Pt'))
+    printBig(cat)
+
+    histAnalysis.SetBaseCut(Nminus1Cut(cuts.cut('nocut', cat),'fatjet1Pt'))
     histAnalysis.ResetScaleFactorCuts()
 
     for name, cut in theCuts(cat):
@@ -40,20 +41,19 @@ def getSmear(cat, whichDir):
         mccut = '(' + cut.replace('L2L3','L2L3Smeared' + whichDir) + ' && fatjet1PtSmeared' + whichDir + '  > 250)'
         histAnalysis.AddScaleFactorCut(name, mccut, datacut)
 
-    histAnalysis.DoScaleFactors('n_tightlep',1,0,2)
+    histAnalysis.DoScaleFactors('n_tightlep', 1, 0, 4)
 
 
 def main(cat):
     printBig(cat)
     histAnalysis.ResetScaleFactorCuts()
-    histAnalysis.SetBaseCut(cuts.cut(cat,'nocut'))
+    histAnalysis.SetBaseCut(cuts.cut('nocut', cat))
 
     for name, cut in theCuts(cat):
         histAnalysis.AddScaleFactorCut(name, cut)
 
-    histAnalysis.DoScaleFactors('n_tightlep', 1, 0, 2)
 
-    return
+    histAnalysis.DoScaleFactors('n_tightlep', 1, 0, 4)
 
     printBig('npv %s to %s' % (0, 10))
     histAnalysis.DoScaleFactors('npv', 1, 0, 10)
@@ -66,8 +66,20 @@ def main(cat):
 
 
 if __name__ == "__main__":
-#    for cat in ['dilep', 'diele', 'dimu', 'photon']:
-    for cat in ['photon']:
-        main(cat)
-        for smear in ['Up', 'Down', 'Central']:
-            getSmear(cat, smear)
+    histAnalysis.AddDataFile('../Skim_170111/monojet_Data.root')
+    main('Zmm')
+    main('gjets')
+
+    for direction in ['Up', 'Down']:
+        getSmear('Zmm', direction)
+        getSmear('gjets', direction)
+
+    printBig('Scale Up')
+    histAnalysis.ChangeBackground(1.0)
+    main('Zmm')
+    main('gjets')
+
+    printBig('Scale Down')
+    histAnalysis.ChangeBackground(-0.5)
+    main('Zmm')
+    main('gjets')
