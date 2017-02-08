@@ -41,7 +41,7 @@ def getSmear(cat, whichDir):
         mccut = '(' + cut.replace('L2L3','L2L3Smeared' + whichDir) + ' && fatjet1PtSmeared' + whichDir + '  > 250)'
         histAnalysis.AddScaleFactorCut(name, mccut, datacut)
 
-    histAnalysis.DoScaleFactors('n_tightlep', 1, 0, 4)
+    histAnalysis.DoScaleFactorsCutAndCount('n_tightlep', 0.0, 4.0)
 
 
 def main(cat):
@@ -53,33 +53,48 @@ def main(cat):
         histAnalysis.AddScaleFactorCut(name, cut)
 
 
-    histAnalysis.DoScaleFactors('n_tightlep', 1, 0, 4)
-
-    printBig('npv %s to %s' % (0, 10))
-    histAnalysis.DoScaleFactors('npv', 1, 0, 10)
-    printBig('npv %s to %s' % (10, 20))
-    histAnalysis.DoScaleFactors('npv', 1, 10, 20)
-    printBig('npv %s to %s' % (20, 30))
-    histAnalysis.DoScaleFactors('npv', 1, 20, 30)
-    printBig('npv %s to %s' % (30, 40))
-    histAnalysis.DoScaleFactors('npv', 1, 30, 40)
+    histAnalysis.DoScaleFactorsCutAndCount('n_tightlep', 0.0, 4.0)
 
 
 if __name__ == "__main__":
     histAnalysis.AddDataFile('../Skim_170111/monojet_Data.root')
-    main('Zmm')
+
+    histAnalysis.ReadMCConfig('MCPurity.txt', histAnalysis.kBackground)
+
     main('gjets')
 
-    for direction in ['Up', 'Down']:
-        getSmear('Zmm', direction)
+    printBig('npv %s to %s' % (0, 10))
+    histAnalysis.DoScaleFactorsCutAndCount('npv', 0.0, 10.0)
+    printBig('npv %s to %s' % (10, 20))
+    histAnalysis.DoScaleFactorsCutAndCount('npv', 10.0, 20.0)
+    printBig('npv %s to %s' % (20, 30))
+    histAnalysis.DoScaleFactorsCutAndCount('npv', 20.0, 30.0)
+    printBig('npv %s to %s' % (30, 40))
+    histAnalysis.DoScaleFactorsCutAndCount('npv', 30.0, 40.0)
+
+    printBig('pT %s to %s' % (250, 350))
+    histAnalysis.DoScaleFactorsCutAndCount('fatjet1Pt', 250.0, 350.0)
+    printBig('pT %s to %s' % (350, 500))
+    histAnalysis.DoScaleFactorsCutAndCount('fatjet1Pt', 350.0, 500.0)
+    printBig('pT %s to %s' % (500, 700))
+    histAnalysis.DoScaleFactorsCutAndCount('fatjet1Pt', 500.0, 700.0)
+    printBig('pT %s to %s' % (700, 1000))
+    histAnalysis.DoScaleFactorsCutAndCount('fatjet1Pt', 700.0, 1000.0)
+
+    for direction in ['Up', 'Down', 'Central']:
         getSmear('gjets', direction)
 
     printBig('Scale Up')
     histAnalysis.ChangeBackground(1.0)
-    main('Zmm')
     main('gjets')
 
     printBig('Scale Down')
     histAnalysis.ChangeBackground(-0.5)
-    main('Zmm')
     main('gjets')
+
+    printBig('QCD')
+    histAnalysis.ChangeBackground(0.0)
+    histAnalysis.ResetConfig(histAnalysis.kBackground)
+    histAnalysis.ReadMCConfig('MCMonoJet.txt', histAnalysis.kBackground)
+    for cat in ['gjets', 'Zee', 'Zmm']:
+        main(cat)

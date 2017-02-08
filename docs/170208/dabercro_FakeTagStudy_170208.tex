@@ -1,0 +1,357 @@
+\documentclass{beamer}
+
+\author[D. Abercrombie]{
+  Daniel Abercrombie
+}
+
+\title{\bf \sffamily Fake Tagging Update (and Trends)}
+\date{\today}
+
+\usecolortheme{dove}
+
+\usepackage[absolute,overlay]{textpos}
+\usefonttheme{serif}
+\usepackage{appendixnumberbeamer}
+\usepackage{isotope}
+\usepackage{hyperref}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\setbeamerfont{frametitle}{size=\Large,series=\bf\sffamily}
+\setbeamertemplate{frametitle}[default][center]
+\usepackage{siunitx}
+\usepackage{tabularx}
+\usepackage{makecell}
+
+\setbeamertemplate{navigation symbols}{}
+\usepackage{graphicx}
+\usepackage{color}
+\setbeamertemplate{footline}[text line]{\parbox{1.083\linewidth}{\footnotesize \hfill \insertshortauthor \hfill \insertpagenumber /\inserttotalframenumber}}
+\setbeamertemplate{headline}[text line]{\parbox{1.083\linewidth}{\footnotesize \hspace{-0.083\linewidth} \textcolor{blue}{\sffamily \insertsection \hfill \insertsubsection}}}
+
+\IfFileExists{/Users/dabercro/GradSchool/Presentations/MIT-logo.pdf}
+             {\logo{\includegraphics[height=0.5cm]{/Users/dabercro/GradSchool/Presentations/MIT-logo.pdf}}}
+             {\logo{\includegraphics[height=0.5cm]{/home/dabercro/MIT-logo.pdf}}}
+
+\usepackage{changepage}
+
+\newcommand{\beginbackup}{
+  \newcounter{framenumbervorappendix}
+  \setcounter{framenumbervorappendix}{\value{framenumber}}
+}
+\newcommand{\backupend}{
+  \addtocounter{framenumbervorappendix}{-\value{framenumber}}
+  \addtocounter{framenumber}{\value{framenumbervorappendix}}
+}
+
+\graphicspath{{figs/}}
+
+\begin{document}
+
+\begin{frame}[nonumbering]
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introduction}
+
+  The most recent measurement scale factor of signal-like fat jets is presented
+  \href{http://t3serv001.mit.edu/~dabercro/docs/WTagStudy/dabercro_WTagStudy_170127.pdf}
+       {\textcolor{blue}{here}}.
+  To compliment this, we present a scale factor of background-like fat jets.
+  To get a background-enriched sample of fat jets, a $\gamma + $jets selectionis used.
+  Drell Yan selections in both $Z\rightarrow\mu\mu$ and $Z\rightarrow ee$ channels are used
+  as a systematic, but these channels include the irreducible, signal-like background
+  that is the di-boson process.
+
+  \vspace{12pt}
+
+  Largely, this is a luminosity update of
+  \href{http://t3serv001.mit.edu/~dabercro/docs/FakeTagStudy/dabercro_FakeTagStudy_161028.pdf}
+       {\textcolor{blue}{a previous study}}
+  measuring the fake-tag scale factor.
+  In addition, recoil and pileup dependence are considered in order to keep this interesting.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Samples and Selection}
+
+  \begin{itemize}
+  \item Using mono-jet samples and selection for control regions
+  \item Main fake tagging is done using $\gamma + $jets selection
+  \item Both Di-lepton regions are separately used for systematic
+  \item Do not have the triggers (updated Nero has different list) or trigger efficiencies yet
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tagging Variable Distributions}
+
+  Shape of Pruned mass and $\tau_2/\tau_1$ before V-tagging cuts are applied.
+
+  \vspace{12pt}
+
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=\linewidth]{170208_FakeTagStudy/nocut_gjets_fatjet1PrunedML2L3.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=\linewidth]{170208_FakeTagStudy/nocut_gjets_fatjet1tau21.pdf}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tagging Variable Distributions After Cut}
+
+  Cutting on one variable shapes the other
+
+  \vspace{12pt}
+
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=\linewidth]{170208_FakeTagStudy/full_gjets_fatjet1PrunedML2L3.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \includegraphics[width=\linewidth]{170208_FakeTagStudy/full_gjets_fatjet1tau21.pdf}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Scale Factor}
+
+  The V-tagging cuts are: \\
+  \textcolor{red}{$\SI{65}{GeV} < m_{SD} < \SI{105}{GeV}$ and $\tau_2/\tau_1 < 0.6$}
+
+  \vspace{12pt}
+
+  \begin{adjustwidth}{-1.5em}{-1.5em}
+    {\tiny
+      \centering
+
+      \begin{tabular}{c|c|c|c|c}
+        \hline
+        & No Cut & $m_\text{pruned}$ & $\tau_2/\tau_1$ & V-tag cut \\
+        \hline
+        \makecell{Background \\ Subtracted \\ Data} & 248045.70 $\pm$ 498.38 & 30608.27 $\pm$ 175.45 & 56364.06 $\pm$ 237.95 & 21954.26 $\pm$ 148.74 \\
+        \makecell{Signal-\\ matched MC} & 234409.46 $\pm$ 1347.84 & 31817.83 $\pm$ 489.35 & 56953.68 $\pm$ 632.26 & 22128.83 $\pm$ 417.37 \\
+        \hline
+        \makecell{Normalized \\ Ratio} & 1.00 $\pm$ 0.01 & 0.91 $\pm$ 0.01 & 0.94 $\pm$ 0.01 & \fcolorbox{red}{yellow}{0.94 $\pm$ 0.02} \\
+        \hline
+      \end{tabular}
+    }
+  \end{adjustwidth}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Systematics}
+
+  $\gamma + $jets selection is almost entirely background-like, so there's no need for subtraction.
+  Systematics are evaluated by the following:
+
+  \begin{itemize}
+  \item Jet scaling/smearing hybrid method
+  \item Replacing Purity sample with QCD
+  \item Using di-lepton regions with background subtraction
+  \end{itemize}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Jet Smearing and QCD Sample}
+
+  Jet Smearing (this is Up, all are 1\% different):
+
+  \vspace{12pt}
+
+  \begin{adjustwidth}{-1.5em}{-1.5em}
+    {\tiny
+      \centering
+
+      \begin{tabular}{c|c|c|c|c}
+        \hline
+        & No Cut & $m_\text{pruned}$ & $\tau_2/\tau_1$ & V-tag cut \\
+        \hline
+        \makecell{Background \\ Subtracted \\ Data} & 355452.39 $\pm$ 596.58 & 30607.11 $\pm$ 175.47 & 56361.32 $\pm$ 237.98 & 21953.21 $\pm$ 148.77 \\
+        \makecell{Signal-\\ matched MC} & 325388.45 $\pm$ 1721.69 & 32332.71 $\pm$ 495.06 & 57747.21 $\pm$ 640.03 & 21241.38 $\pm$ 407.79 \\
+        \hline
+        \makecell{Normalized \\ Ratio} & 1.00 $\pm$ 0.01 & 0.87 $\pm$ 0.01 & 0.89 $\pm$ 0.01 & \fcolorbox{red}{yellow}{0.95 $\pm$ 0.02} \\
+        \hline        
+      \end{tabular}
+    }
+  \end{adjustwidth}
+
+  Using the QCD Sample:
+
+  \vspace{12pt}
+
+  \begin{adjustwidth}{-1.5em}{-1.5em}
+    {\tiny
+      \centering
+
+      \begin{tabular}{c|c|c|c|c}
+        \hline
+        & No Cut & $m_\text{pruned}$ & $\tau_2/\tau_1$ & V-tag cut \\
+        \hline
+        \makecell{Background \\ Subtracted \\ Data} & 248046.17 $\pm$ 498.38 & 30608.50 $\pm$ 175.45 & 56364.40 $\pm$ 237.95 & 21954.48 $\pm$ 148.74 \\
+        \makecell{Signal-\\ matched MC} & 235441.56 $\pm$ 1439.00 & 32523.77 $\pm$ 534.91 & 57710.89 $\pm$ 676.34 & 22521.59 $\pm$ 451.38 \\
+        \hline
+        \makecell{Normalized \\ Ratio} & 1.00 $\pm$ 0.01 & 0.89 $\pm$ 0.02 & 0.93 $\pm$ 0.01 & \fcolorbox{red}{yellow}{0.93 $\pm$ 0.02} \\
+        \hline
+      \end{tabular}
+    }
+  \end{adjustwidth}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Using Di-Lepton for Systematics}
+
+  The Z + jets region has a different quark-gluon fraction than $\gamma + $jets.
+  We use $\gamma + $jets for the primary measurement since there are no signal-like
+  backgrounds contaminating that would need to be subtracted.
+
+  \vspace{6pt}
+
+  \begin{columns}
+    \begin{column}{0.5\linewidth}
+      $Z \rightarrow \mu\mu$ \\
+      \includegraphics[width=\linewidth]{170208_FakeTagStudy/full_Zmm_fatjet1PrunedML2L3.pdf}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      $Z \rightarrow ee$ \\
+      \includegraphics[width=\linewidth]{170208_FakeTagStudy/full_Zee_fatjet1PrunedML2L3.pdf}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Di-Leption Selections}
+
+  $Z \rightarrow \mu\mu$
+
+  \vspace{12pt}
+
+  \begin{adjustwidth}{-1.5em}{-1.5em}
+    {\tiny
+      \centering
+
+      \begin{tabular}{c|c|c|c|c}
+        \hline
+        & No Cut & $m_\text{pruned}$ & $\tau_2/\tau_1$ & V-tag cut \\
+        \hline
+        \makecell{Background \\ Subtracted \\ Data} & 16766.04 $\pm$ 133.49 & 1933.95 $\pm$ 47.79 & 3705.24 $\pm$ 65.01 & 1370.71 $\pm$ 40.86 \\
+        \makecell{Signal-\\ matched MC} & 15474.23 $\pm$ 71.67 & 2091.49 $\pm$ 28.06 & 3736.36 $\pm$ 35.28 & 1451.61 $\pm$ 23.51 \\
+        \hline
+        \makecell{Normalized \\ Ratio} & 1.00 $\pm$ 0.01 & 0.85 $\pm$ 0.02 & 0.92 $\pm$ 0.02 & \fcolorbox{red}{yellow}{0.87 $\pm$ 0.03} \\
+        \hline
+      \end{tabular}
+    }
+  \end{adjustwidth}
+
+  $Z \rightarrow ee$
+
+  \vspace{12pt}
+
+  \begin{adjustwidth}{-1.5em}{-1.5em}
+    {\tiny
+      \centering
+
+      \begin{tabular}{c|c|c|c|c}
+        \hline
+        & No Cut & $m_\text{pruned}$ & $\tau_2/\tau_1$ & V-tag cut \\
+        \hline
+        \makecell{Background \\ Subtracted \\ Data} & 11169.32 $\pm$ 109.45 & 1307.34 $\pm$ 39.45 & 2556.89 $\pm$ 53.89 & 927.54 $\pm$ 34.06 \\
+        \makecell{Signal-\\ matched MC} & 10938.41 $\pm$ 60.01 & 1500.08 $\pm$ 23.68 & 2648.47 $\pm$ 29.95 & 1009.61 $\pm$ 18.62 \\
+        \hline
+        \makecell{Normalized \\ Ratio} & 1.00 $\pm$ 0.01 & 0.85 $\pm$ 0.03 & 0.95 $\pm$ 0.02 & \fcolorbox{red}{yellow}{0.90 $\pm$ 0.04} \\
+        \hline
+      \end{tabular}
+    }
+  \end{adjustwidth}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Systematic Uncertainties}
+  We assume systematic uncertainties are symmetric for now
+  \begin{center}
+  \begin{tabular}{l|c}
+    Source & Uncertainty \\
+    \hline
+    Jet Smearing & 1\% \\
+    QCD vs. Purity & 1\% \\
+    Di-Lepton Regions & 7\% \\
+  \end{tabular}
+  \end{center}
+  Adding in Quadrature: \boxed{$\pm 7.1\%$}
+  \vspace{12pt}
+\end{frame}
+
+\begin{frame}
+  \frametitle{NPV Dependence}
+
+  \begin{center}
+
+    NPV 0 to 10: 0.99 $\pm$ 0.06 \\
+    NPV 10 to 20: 0.95 $\pm$ 0.02 \\
+    NPV 20 to 30: 0.90 $\pm$ 0.03 \\ 
+    NPV 30 to 40: 0.94 $\pm$ 0.16
+
+  \end{center}
+
+  Not obvious trend, like we had seen before
+  \href{http://t3serv001.mit.edu/~dabercro/docs/FakeTagStudy/dabercro_MonoV_161109.pdf}
+       {\textcolor{blue}{here (slide 8)}},
+  but probably shouldn't be ruled out.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{$p_T$ Dependence}
+
+  \begin{center}
+
+    $p_T$ 250 to \SI{350}{GeV}: 0.93 $\pm$ 0.02 \\
+    $p_T$ 350 to \SI{500}{GeV}: 0.94 $\pm$ 0.03 \\
+    $p_T$ 550 to \SI{700}{GeV}: 1.00 $\pm$ 0.06 \\
+    $p_T$ 700 to \SI{1000}{GeV}: 1.17 $\pm$ 0.15 \\
+
+  \end{center}
+
+  Good chance of a trend here.
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Conclusions}
+
+  \begin{itemize}
+  \item Scale Factor: \boxed{$0.94 \pm 0.02 \pm 0.07$}, consistent with 1
+  \item Need trigger list and scale factors
+  \item There may be a strong dependence on NPV and $p_T$
+    \begin{itemize}
+    \item For some reason last NPV bin has worse stats (reweighting?)
+    \item Will produce histograms showing trends
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+\beginbackup
+
+\begin{frame}
+  \frametitle{Backup Slides}
+\end{frame}
+
+\input{backup_slides.tex}
+
+\backupend
+
+\end{document}

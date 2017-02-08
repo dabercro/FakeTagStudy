@@ -49,10 +49,12 @@ if __name__ == '__main__':
         ['signal',
          'Zmm',
          'Wmn',
-         'gjets',
          'Zee',
          'Wen'
          ],
         # Things to plot
         SetupArgs()
         )
+
+    plotter.ReadMCConfig('MCPurity.txt')
+    MakePlots(['nocut', 'full', 'tight'], ['gjets'], SetupArgs())
