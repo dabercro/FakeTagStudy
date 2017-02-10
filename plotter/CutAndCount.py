@@ -2,8 +2,10 @@
 
 from CrombieTools.AnalysisTools.HistAnalysis import *
 from CrombieTools.LoadConfig import cuts
+from CrombieTools.PlotTools import AddOutDir
 from CrombieTools import Nminus1Cut
 import os, sys
+from array import array
 
 SetupFromEnv()
 
@@ -63,23 +65,12 @@ if __name__ == "__main__":
 
     main('gjets')
 
-    printBig('npv %s to %s' % (0, 10))
-    histAnalysis.DoScaleFactorsCutAndCount('npv', 0.0, 10.0)
-    printBig('npv %s to %s' % (10, 20))
-    histAnalysis.DoScaleFactorsCutAndCount('npv', 10.0, 20.0)
-    printBig('npv %s to %s' % (20, 30))
-    histAnalysis.DoScaleFactorsCutAndCount('npv', 20.0, 30.0)
-    printBig('npv %s to %s' % (30, 40))
-    histAnalysis.DoScaleFactorsCutAndCount('npv', 30.0, 40.0)
+    histAnalysis.PlotScaleFactors(AddOutDir('scale_npv'), 'npv', 4, 0, 40, 'NPV')
+    histAnalysis.PlotScaleFactors(AddOutDir('scale_fatjet1Pt'), 'fatjet1Pt', 4,
+                                  array('d', [250, 350, 500, 700, 1000]),
+                                  'Fat Jet p_{T} [GeV]')
 
-    printBig('pT %s to %s' % (250, 350))
-    histAnalysis.DoScaleFactorsCutAndCount('fatjet1Pt', 250.0, 350.0)
-    printBig('pT %s to %s' % (350, 500))
-    histAnalysis.DoScaleFactorsCutAndCount('fatjet1Pt', 350.0, 500.0)
-    printBig('pT %s to %s' % (500, 700))
-    histAnalysis.DoScaleFactorsCutAndCount('fatjet1Pt', 500.0, 700.0)
-    printBig('pT %s to %s' % (700, 1000))
-    histAnalysis.DoScaleFactorsCutAndCount('fatjet1Pt', 700.0, 1000.0)
+    exit(0)
 
     for direction in ['Up', 'Down', 'Central']:
         getSmear('gjets', direction)
